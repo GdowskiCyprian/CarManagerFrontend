@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="topbar">
+  CarManager - Hello {{currentRepairShop.name}}
+</div>
+
+<div class="sidenav">
+  <a >General Info</a>
+  <a >My Clients</a>
+  <a >My Repairs</a>
+  <a >Additional Info</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="content">
+  <table>
+    <tr>
+      <th>name</th>
+      <td>{{currentRepairShop.name}}</td>
+    </tr>
+    <tr>
+      <th>phoneNumber</th>
+      <td>{{currentRepairShop.nip}}</td>
+    </tr>
+    <tr>
+      <th>mailAddress</th>
+      <td>{{currentRepairShop.mailAddress}}</td>
+    </tr>
+    <tr>
+      <th>nip</th>
+      <td>{{currentRepairShop.phoneNumber}}</td>
+    </tr>
+  </table>
+</div>
+
+
+
+</body>
+</html>

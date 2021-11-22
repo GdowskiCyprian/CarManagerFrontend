@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+<h2>RepairShopTable</h2>
+<p>Hello {{someText}}</p>
+<table>
+  <tr>
+    <th>name</th>
+    <th>phoneNumber</th>
+    <th>mailAddress</th>
+    <th>nip</th>
+  </tr>
+  <tr *ngFor="let repairshop of repairShops">
+    <td>{{repairshop.name}}</td>
+    <td>{{repairshop.phoneNumber}}</td>
+    <td>{{repairshop.mailAddress}}</td>
+    <td>{{repairshop.nip}}</td>
+  </tr>
+</table>
+
+</body>
+</html>
