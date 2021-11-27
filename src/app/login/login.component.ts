@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('password',this.password);
         sessionStorage.setItem('role', this.message);
         if(data == "REPAIR_SHOP"){
-          this.router.navigate(["/homepage"]);
+          this.router.navigate(["/repairshopgeneralinfo"]);
           console.log(data);
         }
         else{

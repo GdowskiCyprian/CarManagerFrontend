@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  border-radius: 10px;
+
 }
 
 body {
@@ -10,18 +10,27 @@ body {
   width: 100%;
 }
 table{
-  width: 20vw;
-  height: 20vh;
-  border: 3px solid blue;
+  width: 100%;
+
+  /*border: 3px solid blue;*/
+
+  margin: 0;
+  background-color: aliceblue;
+}
+th{
+  background-color: aquamarine;
+  text-align: center;
+  max-width: 0;
 }
 tr{
   text-align: right;
+  background-color: aliceblue;
 
 }
 td{
-  text-align: left;
-  border-radius: 0px;
-  border-left: 3px solid blue;
+  text-align: center;
+  max-width: 0;
+
 }
 .topbar{
   text-align: center;
@@ -72,7 +81,6 @@ td{
   position: fixed;
   height: 90vh;
   width: 90vw;
+  padding-right: 3vw;
 }
-.column{
-  width: 10vw;
-}
+

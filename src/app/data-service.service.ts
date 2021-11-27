@@ -39,4 +39,10 @@ export class DataServiceService {
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/api/repairshops/getByMail/"+sessionStorage.getItem('username'),{headers});
   }
+  public getCurrentRepairs(id:number){
+
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/api/repairs/getrepairsbycurrent/"+id.toString(),{headers});
+  }
 }

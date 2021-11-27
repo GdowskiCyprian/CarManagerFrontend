@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="topbar">
+  CarManager - Hello {{email}}
+</div>
+
+<div class="sidenav">
+  <a href="/repairshopgeneralinfo">General Info</a>
+  <a href="/repairshopmyclients">My Clients</a>
+  <a >My Repairs</a>
+  <a >Additional Info</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="content">
+  <table>
+    <tr>
+
+      <th>date</th>
+      <th>description</th>
+      <th>name</th>
+      <th>Repair Part Menu</th>
+    </tr>
+    <tr *ngFor="let repair of allRepairs">
+
+      <td>{{repair.date | date:'dd/MM/yyyy'}}</td>
+      <td>{{repair.description}}</td>
+      <td>{{repair.name}}</td>
+      <table>
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>price($)</th>
+        </tr>
+        <tr *ngFor="let repairPart of repair['repairParts']">
+          <td>{{repairPart.name}}</td>
+          <td>{{repairPart.description}}</td>
+          <td>{{repairPart.price}}</td>
+        </tr>
+      </table>
+
+
+
+    </tr>
+
+  </table>
+</div>
+
+
+
+</body>
+</html>
+

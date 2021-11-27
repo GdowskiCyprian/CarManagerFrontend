@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from "@angular/router";
 import {DataServiceService} from "../data-service.service";
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-repair-shop-my-clients',
+  templateUrl: './repair-shop-my-clients.component.html',
+  styleUrls: ['./repair-shop-my-clients.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class RepairShopMyClientsComponent implements OnInit {
 
   email:string | null = '';
   currentRepairShop : any;
