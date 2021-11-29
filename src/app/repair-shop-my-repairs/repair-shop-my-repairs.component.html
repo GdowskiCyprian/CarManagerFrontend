@@ -19,26 +19,41 @@
   <table>
     <tr>
 
-      <th>date</th>
-      <th>description</th>
-      <th>name</th>
-      <th>Repair Part Menu</th>
+      <th class="mainth">date</th>
+      <th class="mainth">description</th>
+      <th class="mainth">name</th>
+<!--      <th class="mainthrepairpart">Repair Part Menu</th>-->
+      <table class="headersmenu">
+        <tr>
+          <th class="repairth">Part name</th>
+          <th class="repairth">Part price($)</th>
+          <th class="repairthaction">Edit</th>
+          <th class="repairthaction">Delete</th>
+        </tr>
+      </table>
     </tr>
     <tr *ngFor="let repair of allRepairs">
 
-      <td>{{repair.date | date:'dd/MM/yyyy'}}</td>
-      <td>{{repair.description}}</td>
-      <td>{{repair.name}}</td>
-      <table>
-        <tr>
-          <th>name</th>
-          <th>description</th>
-          <th>price($)</th>
-        </tr>
+      <td class="normaltd">{{repair.date | date:'dd/MM/yyyy'}}</td>
+      <td class="normaltd">{{repair.description}}</td>
+      <td class="normaltd">{{repair.name}}</td>
+      <table class="repairtable">
+<!--        <tr>-->
+<!--          <th class="repairth">name</th>-->
+<!--          <th class="repairth">price($)</th>-->
+<!--          <th class="repairthaction">EditAction</th>-->
+<!--          <th class="repairthaction">DeleteAction</th>-->
+<!--        </tr>-->
         <tr *ngFor="let repairPart of repair['repairParts']">
-          <td>{{repairPart.name}}</td>
-          <td>{{repairPart.description}}</td>
-          <td>{{repairPart.price}}</td>
+          <td class="repairtd">{{repairPart.name}}</td>
+          <td class="repairtd">{{repairPart.price}}</td>
+          <td class="repairtdaction">
+            <button class="buttonrepairpart" >Edit</button>
+          </td>
+          <td class="repairtdaction">
+            <button class="buttonrepairpart" (click)="deleteRepairPart(repairPart.idRepairPart)">Delete</button>
+          </td>
+
         </tr>
       </table>
 

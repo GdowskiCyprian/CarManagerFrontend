@@ -47,5 +47,10 @@ export class RepairShopMyRepairsComponent implements OnInit {
     this.service.logout();
   }
 
+  deleteRepairPart(id:number){
+    window.location.reload();
+    this.service.deleteRepairPart(id);
+
+  }
 
 }

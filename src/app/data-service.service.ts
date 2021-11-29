@@ -45,4 +45,12 @@ export class DataServiceService {
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/api/repairs/getrepairsbycurrent/"+id.toString(),{headers});
   }
+  public deleteRepairPart(id:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete('http://localhost:8080/api/repairParts/deleteRepairPart/'+id.toString()
+       , {headers}
+    ).subscribe(()=> console.log('DeleteSuccesfull'));
+
+  }
 }
