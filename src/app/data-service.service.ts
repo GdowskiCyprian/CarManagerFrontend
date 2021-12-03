@@ -53,4 +53,9 @@ export class DataServiceService {
     ).subscribe(()=> console.log('DeleteSuccesfull'));
 
   }
+  public getCurrentClients(id:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/api/clients/getcurrentclients/"+id.toString(),{headers});
+  }
 }

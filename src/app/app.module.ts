@@ -11,6 +11,7 @@ import { RepairShopMyClientsComponent } from './repair-shop-my-clients/repair-sh
 import { RepairShopMyRepairsComponent } from './repair-shop-my-repairs/repair-shop-my-repairs.component';
 import { RepairShopGeneralInfoComponent } from './repair-shop-general-info/repair-shop-general-info.component';
 import { RegisterComponent } from './register/register.component';
+import { RepairShopNewRepairComponent } from './repair-shop-new-repair/repair-shop-new-repair.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RegisterComponent } from './register/register.component';
     RepairShopMyClientsComponent,
     RepairShopMyRepairsComponent,
     RepairShopGeneralInfoComponent,
-    RegisterComponent
+    RegisterComponent,
+    RepairShopNewRepairComponent
   ],
   imports: [
     BrowserModule,

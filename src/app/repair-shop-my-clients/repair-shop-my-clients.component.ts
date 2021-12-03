@@ -12,7 +12,7 @@ export class RepairShopMyClientsComponent implements OnInit {
   email:string | null = '';
   currentRepairShop : any;
   constructor(private router:Router, private service:DataServiceService) { }
-
+  allClients: any;
   ngOnInit(): void
   {
     if(!this.service.isLoggedIn())
@@ -30,7 +30,11 @@ export class RepairShopMyClientsComponent implements OnInit {
       }
     }
     let resp = this.service.getCurrentRepairShop();
-    resp.subscribe(data => this.currentRepairShop = data);
+    resp.subscribe(data => {this.currentRepairShop = data, console.log(data)
+    let resp1 = this.service.getCurrentClients(this.currentRepairShop.idRepairShop)
+      resp1.subscribe(data => this.allClients = data)
+
+    });
   }
   logout(){
     this.service.logout();

@@ -8,21 +8,6 @@ body {
   height: 100%;
   width: 100%;
 }
-table{
-  width: 20vw;
-  height: 20vh;
-  border: 3px solid blue;
-  font-size: 5vw;
-}
-tr{
-  text-align: right;
-
-}
-td{
-  text-align: left;
-  border-radius: 0px;
-  border-left: 3px solid blue;
-}
 .topbar{
   text-align: center;
   border: 3px solid red;
@@ -75,4 +60,17 @@ td{
 }
 .column{
   width: 10vw;
+}
+.normaltd{
+  text-align: center;
+
+  background-color: aliceblue;
+}
+.mainth{
+  background: aquamarine;
+}
+.clienttable{
+  width: 100%;
+  background: aliceblue;
+  table-layout: fixed;
 }

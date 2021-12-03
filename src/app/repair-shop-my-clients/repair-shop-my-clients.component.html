@@ -11,12 +11,31 @@
   <a href="/repairshopgeneralinfo">General Info</a>
   <a >My Clients</a>
   <a href="/repairshopmyrepairs">My Repairs</a>
-  <a >Additional Info</a>
+  <a href="/repairshopnewrepair">New Repair</a>
   <a (click)="logout()">Logout</a>
+
 </div>
 
 <div class="content">
-//show all clients
+
+  <table class = "clienttable">
+    <tr>
+
+      <th class="mainth">Client Name</th>
+      <th class="mainth">Client Surname</th>
+      <th class="mainth">Phone Number</th>
+
+    </tr>
+    <tr *ngFor="let client of allClients">
+
+      <td class="normaltd">{{client.name }}</td>
+      <td class="normaltd">{{client.surname}}</td>
+      <td class="normaltd">{{client.phoneNumber}}</td>
+
+    </tr>
+
+  </table>
+
 </div>
 
 
