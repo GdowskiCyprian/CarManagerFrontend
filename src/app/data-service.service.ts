@@ -58,4 +58,21 @@ export class DataServiceService {
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/api/clients/getcurrentclients/"+id.toString(),{headers});
   }
+  getCurrentCars(id:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/api/cars/getcurrentcars/"+id.toString(),{headers});
+  }
+  postNewRepair(name:string, description:string, date:string, idCar:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
+    this.http.post("localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp));
+  }
+}
+interface Repair{
+  name:string;
+  date:string;
+  description:string;
+  idCar:number;
 }

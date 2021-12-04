@@ -1,1 +1,46 @@
-<p>repair-shop-new-repair works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="topbar">
+  CarManager - Hello {{email}}
+</div>
+
+<div class="sidenav">
+  <a >General Info</a>
+  <a href="/repairshopmyclients">My Clients</a>
+  <a href="/repairshopmyrepairs">My Repairs</a>
+  <a >New Repair</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="content">
+  <form id="accesspanel" method="post" class="formnewrepair">
+    <div class="inset">
+      <p>
+        <input type="text" name="name" [(ngModel)]="name" id="name" placeholder="name">
+      </p>
+      <p>
+        <input type="date" name="date" [(ngModel)]="date" id="date" placeholder="date">
+      </p>
+      <p>
+        <input type="text" name="description" [(ngModel)]="description" id="description" placeholder="description">
+      </p>
+      <p>
+        <select [(ngModel)]="car" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let car of cars"
+            [ngValue]="car">
+            {{car.manufacturer}}
+          </option>
+
+        </select>
+      </p>
+    </div>
+    <p class="p-container">
+      <input type="submit" name="Login" id="go" value="Login" (click)="addnewrepair()">
+    </p>
+  </form>
+</div>
+</body>
+</html>
