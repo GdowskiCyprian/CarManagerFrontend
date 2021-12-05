@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -67,7 +67,7 @@ export class DataServiceService {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
-    this.http.post("localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp));
+    console.log(this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp)));
   }
 }
 interface Repair{
