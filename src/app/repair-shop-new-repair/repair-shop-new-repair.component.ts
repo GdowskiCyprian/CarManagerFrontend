@@ -15,6 +15,12 @@ export class RepairShopNewRepairComponent implements OnInit {
   description:string= "";
   date:string= "";
   car:any;
+  repairs: any;
+  selectedRepair:any;
+  partname:string = "";
+  partdescription:string= "";
+  partprice:number = 0;
+  partfile:File | null = null;
   constructor(private router:Router, private service:DataServiceService) { }
 
 
@@ -41,6 +47,9 @@ export class RepairShopNewRepairComponent implements OnInit {
       this.email = this.currentRepairShop.name;
       let resp1 = this.service.getCurrentCars(this.currentRepairShop.idRepairShop);
       resp1.subscribe(data => {this.cars = data, console.log(data)});
+      let resp2 = this.service.getCurrentRepairs(this.currentRepairShop.idRepairShop);
+      resp2.subscribe(data => {this.repairs = data, console.log(data)});
+
     })
   }
   addnewrepair(){
@@ -48,5 +57,11 @@ export class RepairShopNewRepairComponent implements OnInit {
   }
   logout(){
     this.service.logout()
+  }
+  addnewrepairpart(){
+    this.service.postNewRepairPart(this.partname, this.partdescription, this.partprice, this.partfile, this.selectedRepair.idRepair)
+  }
+  onFileChanged(event: any) {
+    this.partfile = event.target.files.item(0);
   }
 }

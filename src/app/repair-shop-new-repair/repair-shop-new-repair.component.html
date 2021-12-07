@@ -16,6 +16,7 @@
 </div>
 
 <div class="content">
+  <label>Add new Repair</label>
   <form id="accesspanel" method="post" class="formnewrepair">
     <div class="inset">
       <p>
@@ -38,8 +39,37 @@
       </p>
     </div>
     <p class="p-container">
-      <input type="submit" name="Login" id="go" value="Login" (click)="addnewrepair()">
+      <input type="submit" name="Submit" id="go" value="Submit" (click)="addnewrepair()">
     </p>
+  </form>
+  <label>Add new repairPart</label>
+  <form id="newrepairpart">
+    <p>
+      <input type="text" name="name" placeholder="name" [(ngModel)]="partname">
+    </p>
+    <p>
+      <input type="text" name="description" placeholder="description" [(ngModel)]="partdescription">
+    </p>
+    <p>
+      <input type="number" name="price" placeholder="price" [(ngModel)]="partprice">
+    </p>
+    <p>
+      <input type="file"
+             id="file"
+             (change)="onFileChanged($event)">
+    </p>
+    <p>
+      <select [(ngModel)]="selectedRepair" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let repair of repairs"
+        [ngValue]="repair">
+          {{repair.name}}
+        </option>
+      </select>
+    </p>
+    <p>
+      <input type="submit" (click) = "addnewrepairpart()">
+    </p>
+
   </form>
 </div>
 </body>
