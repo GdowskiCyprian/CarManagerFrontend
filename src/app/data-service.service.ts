@@ -69,14 +69,13 @@ export class DataServiceService {
     let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
     console.log(this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp)));
   }
-  postNewRepairPart(partname:string, partdescription:string, partprice:number, partfile:File | null, idRepair:number){
-    const headers = new HttpHeaders({'Content-Type': 'multipart/mixed',
+  postNewRepairPart(partname:string, partdescription:string, partprice:number, idRepair:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
 
 
-    let newreparpart:RepairPart = {partname:partname, partdescription:partdescription, partprice:partprice, partfile:partfile, idRepair:idRepair}
-    console.log(newreparpart);
-    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart", partfile, {headers}).subscribe(resp => console.log(resp));
+    let newreparpart:RepairPart = {partname:partname, partdescription:partdescription, partprice:partprice, idRepair:idRepair}
+    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart", newreparpart, {headers}).subscribe(resp => console.log(resp));
   }
 }
 interface Repair{
@@ -89,6 +88,5 @@ interface RepairPart{
   partname:string;
   partdescription:string;
   partprice:number;
-  partfile:File | null;
   idRepair:number;
 }

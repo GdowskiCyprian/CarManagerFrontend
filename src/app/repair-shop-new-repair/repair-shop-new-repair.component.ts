@@ -20,7 +20,7 @@ export class RepairShopNewRepairComponent implements OnInit {
   partname:string = "";
   partdescription:string= "";
   partprice:number = 0;
-  partfile:File | null = null;
+  // partfile:File | null = null;
   constructor(private router:Router, private service:DataServiceService) { }
 
 
@@ -59,9 +59,9 @@ export class RepairShopNewRepairComponent implements OnInit {
     this.service.logout()
   }
   addnewrepairpart(){
-    this.service.postNewRepairPart(this.partname, this.partdescription, this.partprice, this.partfile, this.selectedRepair.idRepair)
+    this.service.postNewRepairPart(this.partname, this.partdescription, this.partprice, this.selectedRepair.idRepair)
   }
-  onFileChanged(event: any) {
-    this.partfile = event.target.files.item(0);
-  }
+  // onFileChanged(event: any) {
+  //   this.partfile = event.target.files.item(0);
+  // }
 }
