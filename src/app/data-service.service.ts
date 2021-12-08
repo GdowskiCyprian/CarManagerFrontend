@@ -51,7 +51,13 @@ export class DataServiceService {
     this.http.delete('http://localhost:8080/api/repairParts/deleteRepairPart/'+id.toString()
        , {headers}
     ).subscribe(()=> console.log('DeleteSuccesfull'));
-
+  }
+  public deleteRepair(id:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete('http://localhost:8080/api/repairs/deleteRepair/'+id.toString()
+      , {headers}
+    ).subscribe(()=> console.log('DeleteSuccesfull'));
   }
   public getCurrentClients(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
