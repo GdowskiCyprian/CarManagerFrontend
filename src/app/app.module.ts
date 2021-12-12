@@ -10,7 +10,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { RepairShopMyClientsComponent } from './repair-shop-my-clients/repair-shop-my-clients.component';
 import { RepairShopMyRepairsComponent } from './repair-shop-my-repairs/repair-shop-my-repairs.component';
 import { RepairShopGeneralInfoComponent } from './repair-shop-general-info/repair-shop-general-info.component';
-import { RegisterComponent } from './register/register.component';
 import { RepairShopNewRepairComponent } from './repair-shop-new-repair/repair-shop-new-repair.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { RepairShopNewRepairComponent } from './repair-shop-new-repair/repair-sh
     RepairShopMyClientsComponent,
     RepairShopMyRepairsComponent,
     RepairShopGeneralInfoComponent,
-    RegisterComponent,
     RepairShopNewRepairComponent
   ],
   imports: [

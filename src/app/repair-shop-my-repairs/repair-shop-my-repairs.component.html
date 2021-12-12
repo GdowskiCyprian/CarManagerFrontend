@@ -31,6 +31,9 @@
           <th class="repairthaction">Delete</th>
         </tr>
       </table>
+      <th>
+        Delete repair
+      </th>
     </tr>
     <tr *ngFor="let repair of allRepairs">
 
@@ -38,12 +41,6 @@
       <td class="normaltd">{{repair.description}}</td>
       <td class="normaltd">{{repair.name}}</td>
       <table class="repairtable">
-<!--        <tr>-->
-<!--          <th class="repairth">name</th>-->
-<!--          <th class="repairth">price($)</th>-->
-<!--          <th class="repairthaction">EditAction</th>-->
-<!--          <th class="repairthaction">DeleteAction</th>-->
-<!--        </tr>-->
         <tr *ngFor="let repairPart of repair['repairParts']">
           <td class="repairtd">{{repairPart.name}}</td>
           <td class="repairtd">{{repairPart.price}}</td>

@@ -1,13 +1,81 @@
-<form id="accesspanel" action="login" method="post" class="form">
-  <div class="inset">
-    <p>
-      <input type="text" name="username" [(ngModel)]="username" id="email" placeholder="username">
-    </p>
-    <p>
-      <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="password">
-    </p>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <div class="maindiv">
+    <div class = "logindiv">
+      <form id="accesspanel" action="login" method="post" class="loginform">
+        <div class="inset">
+          <p>
+            <input type="text" name="username" [(ngModel)]="username" id="email" placeholder="username">
+          </p>
+          <p>
+            <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="password">
+          </p>
+        </div>
+        <p>
+          <input type="submit" name="Login" id="go" value="Login" (click)="loginLoginComp()">
+        </p>
+      </form>
+    </div>
+    <div class="registerrepairshopdiv">
+      <form>
+        <div>
+          <p>
+            <input type="text" name="email" placeholder="email" [(ngModel)]="repairshop.email">
+          </p>
+          <p>
+            <input type="password" name="password" placeholder="password" [(ngModel)]="repairshop.password">
+          </p>
+          <p>
+            <input type="text" name="name" placeholder="name" [(ngModel)]="repairshop.name">
+          </p>
+          <p>
+            <input type="number" name="phonenumber" placeholder="phonenumber" [(ngModel)]="repairshop.phoneNumber">
+          </p>
+          <p>
+            <input type="number" name="nip" placeholder="nip" [(ngModel)]="repairshop.nip">
+          </p>
+          <p>
+            <input type="submit" name="registerrepairshop" value="registerrepairshop" (click)="registerRepairShop()">
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="registerclientdiv">
+      <form>
+        <div>
+          <p>
+            <input type="text" name="email" placeholder="email" [(ngModel)]="client.email">
+          </p>
+          <p>
+            <input type="password" name="password" placeholder="password" [(ngModel)]="client.password">
+          </p>
+          <p>
+            <input type="text" name="name" placeholder="name" [(ngModel)]="client.name">
+          </p>
+          <p>
+            <input type="text" name="surname" placeholder="surname" [(ngModel)]="client.surname">
+          </p>
+          <p>
+            <input type="number" name="phonenumber" placeholder="phonenumber" [(ngModel)]="client.phoneNumber">
+          </p>
+          <p>
+            <select [(ngModel)]="selectedRepairShop" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let repairShop of allRepairShops"
+                      [ngValue]="repairShop">
+                {{repairShop.name}}
+              </option>
+
+            </select>
+          </p>
+          <p>
+            <input type="submit" name="registerclient" value="registerclient" (click)="registerClient()">
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
-  <p class="p-container">
-    <input type="submit" name="Login" id="go" value="Login" (click)="loginLoginComp()">
-  </p>
-</form>
+</body>
+</html>
