@@ -20,8 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private service:DataServiceService, private router:Router) { }
 
   ngOnInit(): void {
-    let resp = this.service.getAllRepairShops()
-    resp.subscribe(data => {this.allRepairShops = data, console.log(data)})
+    this.getRepairShops();
   }
 
   loginLoginComp(){
@@ -49,6 +48,10 @@ export class LoginComponent implements OnInit {
   registerClient(){
     console.log(this.client);
     this.service.registerClient(this.client.email, this.client.password, this.client.name,this.client.surname, this.client.phoneNumber, this.selectedRepairShop.idRepairShop);
+  }
+  getRepairShops(){
+    let resp = this.service.getAllRepairShops()
+    resp.subscribe(data => {this.allRepairShops = data})
   }
 }
 type RepairShop={

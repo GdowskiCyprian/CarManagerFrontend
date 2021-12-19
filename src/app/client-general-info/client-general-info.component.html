@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="topbar">
+  CarManager - Hello {{email}}
+</div>
+
+<div class="sidenav">
+  <a >General Info</a>
+  <a href="/clientmycars">My Cars</a>
+  <a href="/clientmyrefuels">My Refuels</a>
+  <a href="/clientnewcar">New Car</a>
+  <a href="/clientnewrefuel">New Refuel</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="content">
+  <table>
+    <tr>
+      <th>name</th>
+      <td>{{currentClient.name}}</td>
+    </tr>
+    <tr>
+      <th>surname</th>
+      <td>{{currentClient.surname}}</td>
+    </tr>
+    <tr>
+      <th>phoneNumber</th>
+      <td>{{currentClient.phoneNumber}}</td>
+    </tr>
+    <tr>
+      <th>mailAddress</th>
+      <td>{{currentClient.auth.mailAddress}}</td>
+    </tr>
+    <tr>
+      <th>repairShop</th>
+      <td>{{currentClient.repairShop.auth.mailAddress}}</td>
+    </tr>
+  </table>
+</div>
+
+
+
+</body>
+</html>

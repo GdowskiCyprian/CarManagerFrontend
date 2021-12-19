@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+.topbar{
+  text-align: center;
+  border: 3px solid red;
+  position: fixed;
+  height: 10vh;
+  vertical-align: middle;
+  width: 100vw;
+  font-size: 3.5vw;
+  top: 0;
+  left: 0;
+}
+
+/* Style the side navigation */
+.sidenav {
+  height: 90vh;
+  width: 10vw;
+  position: fixed;
+  z-index: 1;
+  top: 10vh;
+  left: 0;
+  border: 3px solid lightblue;
+  overflow-x: hidden;
+
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 5px;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: lightblue;
+}
+
+/* Style the content */
+.content {
+  top: 10vh;
+  left: 10vw;
+  padding-left: 3vw;
+  padding-top: 3vh;
+  border: 3px solid darkgreen;
+  position: fixed;
+  height: 90vh;
+  width: 90vw;
+}
+.contenttable{
+  width: 84vw;
+  background: aliceblue;
+  table-layout: fixed;
+  margin-right: 3vw;
+  text-align: center;
+}
+.tableheader{
+  background-color: aquamarine;
+}
+.tablerow{
+  height: 5vh;
+}

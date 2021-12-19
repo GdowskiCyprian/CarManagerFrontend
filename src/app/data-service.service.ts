@@ -9,7 +9,7 @@ export class DataServiceService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
-public isLoggedIn(){
+  public isLoggedIn(){
     if(sessionStorage.getItem("username") != null && sessionStorage.getItem("password") != null){
       return true;
     }

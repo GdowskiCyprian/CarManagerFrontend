@@ -11,6 +11,11 @@ import { RepairShopMyClientsComponent } from './repair-shop-my-clients/repair-sh
 import { RepairShopMyRepairsComponent } from './repair-shop-my-repairs/repair-shop-my-repairs.component';
 import { RepairShopGeneralInfoComponent } from './repair-shop-general-info/repair-shop-general-info.component';
 import { RepairShopNewRepairComponent } from './repair-shop-new-repair/repair-shop-new-repair.component';
+import { ClientGeneralInfoComponent } from './client-general-info/client-general-info.component';
+import { ClientMyCarsComponent } from './client-my-cars/client-my-cars.component';
+import { ClientMyRefuelsComponent } from './client-my-refuels/client-my-refuels.component';
+import { ClientNewCarComponent } from './client-new-car/client-new-car.component';
+import { ClientNewRefuelComponent } from './client-new-refuel/client-new-refuel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { RepairShopNewRepairComponent } from './repair-shop-new-repair/repair-sh
     RepairShopMyClientsComponent,
     RepairShopMyRepairsComponent,
     RepairShopGeneralInfoComponent,
-    RepairShopNewRepairComponent
+    RepairShopNewRepairComponent,
+    ClientGeneralInfoComponent,
+    ClientMyCarsComponent,
+    ClientMyRefuelsComponent,
+    ClientNewCarComponent,
+    ClientNewRefuelComponent
   ],
   imports: [
     BrowserModule,

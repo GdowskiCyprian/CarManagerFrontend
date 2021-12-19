@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div class="topbar">
+  CarManager - Hello {{email}}
+</div>
+
+<div class="sidenav">
+  <a href="/clientgeneralinfo">General Info</a>
+  <a >My Cars</a>
+  <a href="/clientmyrefuels">My Refuels</a>
+  <a href="/clientnewcar">New Car</a>
+  <a href="/clientnewrefuel">New Refuel</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="content">
+<table class="contenttable">
+  <tr class="tablerow">
+    <th class="tableheader">manufacturer</th>
+    <th class="tableheader">model</th>
+    <th class="tableheader">version</th>
+    <th class="tableheader">mileage</th>
+    <th class="tableheader">power</th>
+  </tr>
+  <tr *ngFor="let car of cars" class="tablerow">
+    <td class="tabledata">{{car.manufacturer}}</td>
+    <td class="tabledata">{{car.model}}</td>
+    <td class="tabledata">{{car.version}}</td>
+    <td class="tabledata">{{car.mileage}}</td>
+    <td class="tabledata">{{car.power}}</td>
+  </tr>
+</table>
+</div>
+
+
+
+</body>
+</html>
