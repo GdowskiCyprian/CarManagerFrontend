@@ -10,6 +10,7 @@ import {ClientServiceService} from "../client-service.service";
 export class ClientMyRefuelsComponent implements OnInit {
   email:string | null = '';
   currentClient:any;
+  refuels: any;
   constructor(private router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
@@ -25,9 +26,15 @@ export class ClientMyRefuelsComponent implements OnInit {
       }
     }
     let resp = this.service.getCurrentClient();
-    resp.subscribe(data => {this.currentClient = data, console.log(data)});
+    resp.subscribe(data => {this.currentClient = data
+    let resp1 = this.service.getCurrentRefuels(this.currentClient.repairShop.idRepairShop);
+      resp1.subscribe(data => {this.refuels = data, console.log(data)} )
+    });
   }
   logout(){
     this.service.logout();
+  }
+  deleteRefuel(id:number){
+    this.service.deleteRefuel(id);
   }
 }

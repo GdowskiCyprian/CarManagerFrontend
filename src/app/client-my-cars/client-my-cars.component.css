@@ -71,3 +71,8 @@ body {
 .tablerow{
   height: 5vh;
 }
+.tabledatabutton{
+  width: 100%;
+  height: 100%;
+}
+

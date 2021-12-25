@@ -24,6 +24,7 @@
     <th class="tableheader">version</th>
     <th class="tableheader">mileage</th>
     <th class="tableheader">power</th>
+    <th class="tableheader">delete</th>
   </tr>
   <tr *ngFor="let car of cars" class="tablerow">
     <td class="tabledata">{{car.manufacturer}}</td>
@@ -31,6 +32,9 @@
     <td class="tabledata">{{car.version}}</td>
     <td class="tabledata">{{car.mileage}}</td>
     <td class="tabledata">{{car.power}}</td>
+    <td>
+      <button class="tabledatabutton" (click)="deleteCar(car.idCar)">Delete</button>
+    </td>
   </tr>
 </table>
 </div>

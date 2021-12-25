@@ -17,7 +17,24 @@
 </div>
 
 <div class="content">
+  <table class="contenttable">
+    <tr class="tablerow">
+      <th class="tableheader">TypeOfFuel</th>
+      <th class="tableheader">Volume</th>
+      <th class="tableheader">Price</th>
 
+      <th class="tableheader">delete</th>
+    </tr>
+    <tr *ngFor="let refuel of refuels" class="tablerow">
+      <td class="tabledata">{{refuel.typeOfFuel}}</td>
+      <td class="tabledata">{{refuel.volume}}</td>
+      <td class="tabledata">{{refuel.price}}</td>
+
+      <td>
+        <button class="tabledatabutton" (click)="deleteRefuel(refuel.idCar)">Delete</button>
+      </td>
+    </tr>
+  </table>
 </div>
 
 

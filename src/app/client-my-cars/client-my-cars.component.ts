@@ -34,4 +34,8 @@ export class ClientMyCarsComponent implements OnInit {
   logout(){
     this.service.logout();
   }
+  deleteCar(id:number){
+    this.service.deleteCar(id);
+    window.location.reload();
+  }
 }

@@ -17,7 +17,63 @@
 </div>
 
 <div class="content">
-
+  <div class="addcarbox">
+    <form>
+      <div>
+        <p>
+          <input type="text" [(ngModel)]="manufacturer" placeholder="manufacturer" name="manufacturer">
+        </p>
+        <p>
+          <input type="text"[(ngModel)]="model" placeholder="model" name="model">
+        </p>
+        <p>
+          <input type="text" [(ngModel)]="version"  placeholder="version" name="version">
+        </p>
+        <p>
+          <input type="number"  [(ngModel)]="power" placeholder="power" name="power">
+        </p>
+        <p>
+          <input type="number"  [(ngModel)]="displacement" placeholder="displacement" name="displacement">
+        </p>
+        <p>
+          <input type="number"  [(ngModel)]="mileage" placeholder="mileage" name="mileage">
+        </p>
+        <p>
+          <input type="text"  [(ngModel)]="yearOfManufacture" placeholder="yearOfManufacture" name="yearOfManufacture">
+        </p>
+      </div>
+      <div>
+        <p>
+          <input type="submit" value="Submit" (click)="addNewCar()">
+        </p>
+      </div>
+    </form>
+  </div>
+  <div class="addfueltankbox">
+    <form>
+      <p>
+        <input type="number" [(ngModel)]="capacity" placeholder="capacity" name="capacity">
+      </p>
+      <p>
+        <select name="capacity" [(ngModel)]="typeOfFuel" placeholder="capacity">
+          <option value="PETROL">PETROL</option>
+          <option value="LPG">LPG</option>
+          <option value="DIESEL">DIESEL</option>
+        </select>
+      </p>
+      <p>
+        <select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let car of allCars"
+                  [ngValue]="car">
+            {{car.manufacturer}} {{car.model}} {{car.version}}
+          </option>
+        </select>
+      </p>
+      <p>
+        <input type="submit" value="Submit" (click)="addNewFuelTank()">
+      </p>
+    </form>
+  </div>
 </div>
 
 
