@@ -41,7 +41,7 @@ export class ClientNewCarComponent implements OnInit {
     }
     let resp = this.service.getCurrentClient();
     resp.subscribe(data => {this.currentClient = data, console.log(data)
-      let resp1 = this.service.getCurrentCars(this.currentClient.repairShop.idRepairShop);
+      let resp1 = this.service.getCurrentCars(this.currentClient.idClient);
       resp1.subscribe(data1 => {this.allCars = data1, console.log(data1)})
     });
   }

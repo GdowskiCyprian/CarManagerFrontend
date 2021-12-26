@@ -3,14 +3,14 @@ import {Router} from "@angular/router";
 import {ClientServiceService} from "../client-service.service";
 
 @Component({
-  selector: 'app-client-my-refuels',
-  templateUrl: './client-my-refuels.component.html',
-  styleUrls: ['./client-my-refuels.component.css']
+  selector: 'app-client-my-repairs',
+  templateUrl: './client-my-repairs.component.html',
+  styleUrls: ['./client-my-repairs.component.css']
 })
-export class ClientMyRefuelsComponent implements OnInit {
-  email:string | null = '';
+export class ClientMyRepairsComponent implements OnInit {
+  allRepairs : any;
   currentClient:any;
-  refuels: any;
+  email:string | null = '';
   constructor(private router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
@@ -26,16 +26,13 @@ export class ClientMyRefuelsComponent implements OnInit {
       }
     }
     let resp = this.service.getCurrentClient();
-    resp.subscribe(data => {this.currentClient = data
-    let resp1 = this.service.getCurrentRefuels(this.currentClient.repairShop.idRepairShop);
-      resp1.subscribe(data => {this.refuels = data, console.log(data)} )
+    resp.subscribe(data => {this.currentClient = data, console.log(data)
+      let resp1 = this.service.getCurrentRepairs(this.currentClient.idClient);
+      resp1.subscribe(data => {this.allRepairs = data, console.log(data)});
     });
   }
   logout(){
     this.service.logout();
   }
-  deleteRefuel(id:number){
-    this.service.deleteRefuel(id);
-    window.location.reload();
-  }
+
 }

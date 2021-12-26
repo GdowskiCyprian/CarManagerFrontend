@@ -16,6 +16,8 @@ import { ClientMyCarsComponent } from './client-my-cars/client-my-cars.component
 import { ClientMyRefuelsComponent } from './client-my-refuels/client-my-refuels.component';
 import { ClientNewCarComponent } from './client-new-car/client-new-car.component';
 import { ClientNewRefuelComponent } from './client-new-refuel/client-new-refuel.component';
+import { ClientMyRepairsComponent } from './client-my-repairs/client-my-repairs.component';
+import { ClientNewRepairComponent } from './client-new-repair/client-new-repair.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ClientNewRefuelComponent } from './client-new-refuel/client-new-refuel.
     ClientMyCarsComponent,
     ClientMyRefuelsComponent,
     ClientNewCarComponent,
-    ClientNewRefuelComponent
+    ClientNewRefuelComponent,
+    ClientMyRepairsComponent,
+    ClientNewRepairComponent
   ],
   imports: [
     BrowserModule,

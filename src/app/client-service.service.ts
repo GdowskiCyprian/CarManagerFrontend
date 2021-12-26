@@ -33,7 +33,7 @@ export class ClientServiceService {
   public getCurrentCars(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/cars/getcurrentcars/"+id.toString(),{headers});
+    return this.http.get("http://localhost:8080/api/cars/getcurrentcarsbyclient/"+id.toString(),{headers});
   }
   public deleteCar(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
@@ -79,6 +79,32 @@ export class ClientServiceService {
     let fuelTank: FuelTank = { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}
     this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", fuelTank, {headers}).subscribe(resp => console.log(resp));
   }
+  postNewRefuel(price:number,
+  volume:number,
+  typeOfFuel:string,
+  idCar:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    let refuel:Refuel = {
+      price:price,
+      volume:volume,
+      typeOfFuel:typeOfFuel,
+      idCar:idCar
+    }
+    this.http.post("http://localhost:8080/api/refuels/postRefuel", refuel, {headers}).subscribe(resp => console.log(resp));
+  }
+  public getCurrentRepairs(id:number){
+
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/api/repairs/getrepairsbycurrentclient/"+id.toString(),{headers});
+  }
+  postNewRepair(name:string, description:string, date:string, idCar:number){
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
+    console.log(this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp)));
+  }
 }
 interface Car{
   manufacturer:string;
@@ -94,4 +120,16 @@ interface FuelTank {
   capacity:number,
   typeOfFuel:string,
   idCar:number
+}
+interface Refuel{
+  price:number,
+  volume:number,
+  typeOfFuel:string,
+  idCar:number
+}
+interface Repair{
+  name:string;
+  date:string;
+  description:string;
+  idCar:number;
 }

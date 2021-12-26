@@ -10,6 +10,8 @@ import {ClientMyCarsComponent} from "./client-my-cars/client-my-cars.component";
 import {ClientMyRefuelsComponent} from "./client-my-refuels/client-my-refuels.component";
 import {ClientNewCarComponent} from "./client-new-car/client-new-car.component";
 import {ClientNewRefuelComponent} from "./client-new-refuel/client-new-refuel.component";
+import {ClientNewRepairComponent} from "./client-new-repair/client-new-repair.component";
+import {ClientMyRepairsComponent} from "./client-my-repairs/client-my-repairs.component";
 
 const routes: Routes = [
   {path:"login", component:LoginComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
   {path:"clientmycars", component:ClientMyCarsComponent},
   {path:"clientmyrefuels", component:ClientMyRefuelsComponent},
   {path:"clientnewcar", component:ClientNewCarComponent},
-  {path:"clientnewrefuel", component:ClientNewRefuelComponent}
+  {path:"clientnewrefuel", component:ClientNewRefuelComponent},
+  {path:"clientnewrepair", component:ClientNewRepairComponent},
+  {path:"clientmyrepairs", component:ClientMyRepairsComponent}
 ];
 
 @NgModule({

@@ -19,35 +19,32 @@
 </div>
 
 <div class="content">
-  <div class="addnewrefuel">
-    <form>
+  <label>Add new Repair</label>
+  <form class="formnewrepair">
+    <div>
       <p>
-        <input type="number" [(ngModel)]="price" placeholder="price" name="price">
-        In PLN
+        <input type="text" name="name" [(ngModel)]="name" id="name" placeholder="name">
       </p>
       <p>
-        <select name="capacity" [(ngModel)]="typeOfFuel" placeholder="capacity">
-          <option value="PETROL">PETROL</option>
-          <option value="LPG">LPG</option>
-          <option value="DIESEL">DIESEL</option>
-        </select>
+        <input type="date" name="date" [(ngModel)]="date" id="date" placeholder="date">
       </p>
       <p>
-        <input type="number" [(ngModel)]="volume" placeholder="volume" name="volume">
+        <input type="text" name="description" [(ngModel)]="description" id="description" placeholder="description">
       </p>
       <p>
-        <select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let car of allCars"
+        <select [(ngModel)]="car" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let car of cars"
                   [ngValue]="car">
             {{car.manufacturer}} {{car.model}} {{car.version}}
           </option>
+
         </select>
       </p>
-      <p>
-        <input type="submit" value="Submit" (click)="addNewRefuel()">
-      </p>
-    </form>
-  </div>
+    </div>
+    <p class="p-container">
+      <input type="submit" name="Submit" id="go" value="Submit" (click)="addNewRepair()">
+    </p>
+  </form>
 </div>
 
 
