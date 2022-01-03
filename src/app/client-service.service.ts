@@ -105,6 +105,20 @@ export class ClientServiceService {
     let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
     console.log(this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp)));
   }
+  changePassword(email:string, oldpassword:string, newpassword:string){
+    console.log(email, oldpassword, newpassword);
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.post("http://localhost:8080/changepassword",
+      {
+        email:email,
+        oldPassword:oldpassword,
+        newPassword:newpassword
+      },
+      {headers, responseType: 'text' as 'json'}
+      ).subscribe(resp => sessionStorage.setItem("password", newpassword), resp => console.log(resp))
+
+  }
 }
 interface Car{
   manufacturer:string;

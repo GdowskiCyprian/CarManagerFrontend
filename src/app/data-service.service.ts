@@ -122,6 +122,19 @@ export class DataServiceService {
       {headers, responseType: 'text' as 'json'})
       .subscribe(resp => console.log(resp));
   }
+  changePassword(email:string, oldpassword:string, newpassword:string){
+    console.log(email, oldpassword, newpassword);
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.post("http://localhost:8080/changepassword",
+      {
+        email:email,
+        oldPassword:oldpassword,
+        newPassword:newpassword
+      },
+      {headers, responseType: 'text' as 'json'}
+    ).subscribe(resp => sessionStorage.setItem("password", newpassword), resp => console.log(resp))
+  }
 }
 interface Repair{
   name:string;

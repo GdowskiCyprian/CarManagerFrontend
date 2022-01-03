@@ -18,6 +18,14 @@
           <input type="submit" name="Login" id="go" value="Login" (click)="loginLoginComp()">
         </p>
       </form>
+      <div>
+        <input
+          style="display: none"
+          type="file" (change)="onFileChanged($event)"
+          #fileInput>
+        <button (click)="fileInput.click()">Select File</button>
+        <button (click)="onUpload()">Upload!</button>
+      </div>
     </div>
     <div class="registerrepairshopdiv">
       <form>
@@ -79,5 +87,6 @@
       </form>
     </div>
   </div>
+
 </body>
 </html>

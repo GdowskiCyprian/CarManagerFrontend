@@ -18,6 +18,16 @@ import { ClientNewCarComponent } from './client-new-car/client-new-car.component
 import { ClientNewRefuelComponent } from './client-new-refuel/client-new-refuel.component';
 import { ClientMyRepairsComponent } from './client-my-repairs/client-my-repairs.component';
 import { ClientNewRepairComponent } from './client-new-repair/client-new-repair.component';
+import { ClientChangePasswordComponent } from './client-change-password/client-change-password.component';
+import { RepairShopChangePasswordComponent } from './repair-shop-change-password/repair-shop-change-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from "@angular/material/button";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -33,13 +43,23 @@ import { ClientNewRepairComponent } from './client-new-repair/client-new-repair.
     ClientNewCarComponent,
     ClientNewRefuelComponent,
     ClientMyRepairsComponent,
-    ClientNewRepairComponent
+    ClientNewRepairComponent,
+    ClientChangePasswordComponent,
+    RepairShopChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatCardModule,
+    MatIconModule,
+    MatTableModule
   ],
   providers: [DataServiceService],
   bootstrap: [AppComponent]

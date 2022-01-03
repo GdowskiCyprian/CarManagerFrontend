@@ -12,6 +12,8 @@ import {ClientNewCarComponent} from "./client-new-car/client-new-car.component";
 import {ClientNewRefuelComponent} from "./client-new-refuel/client-new-refuel.component";
 import {ClientNewRepairComponent} from "./client-new-repair/client-new-repair.component";
 import {ClientMyRepairsComponent} from "./client-my-repairs/client-my-repairs.component";
+import {RepairShopChangePasswordComponent} from "./repair-shop-change-password/repair-shop-change-password.component";
+import {ClientChangePasswordComponent} from "./client-change-password/client-change-password.component";
 
 const routes: Routes = [
   {path:"login", component:LoginComponent},
@@ -26,7 +28,9 @@ const routes: Routes = [
   {path:"clientnewcar", component:ClientNewCarComponent},
   {path:"clientnewrefuel", component:ClientNewRefuelComponent},
   {path:"clientnewrepair", component:ClientNewRepairComponent},
-  {path:"clientmyrepairs", component:ClientMyRepairsComponent}
+  {path:"clientmyrepairs", component:ClientMyRepairsComponent},
+  {path:"repairshopchangepassword", component:RepairShopChangePasswordComponent},
+  {path:"clientchangepassword", component: ClientChangePasswordComponent},
 ];
 
 @NgModule({

@@ -1,84 +1,35 @@
-* {
-  box-sizing: border-box;
-}
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  width: 100%;
+.drawer-button{
+  width: 15vw;
+  height: 7vh;
+  text-align: left;
 }
-
-.topbar{
-  text-align: center;
-  border: 3px solid red;
-  position: fixed;
-  height: 10vh;
-  vertical-align: middle;
+.drawer-container {
   width: 100vw;
-  font-size: 3.5vw;
-  top: 0;
-  left: 0;
+  height: 100vh;
+  background-color: #212121;
 }
-
-/* Style the side navigation */
-.sidenav {
-  height: 90vh;
-  width: 10vw;
-  position: fixed;
-  z-index: 1;
-  top: 10vh;
-  left: 0;
-  border: 3px solid lightblue;
-  overflow-x: hidden;
-
-}
-
-
-/* Side navigation links */
-.sidenav a {
-  padding: 16px;
-  text-decoration: none;
-  display: block;
-  border-radius: 5px;
-}
-
-/* Change color on hover */
-.sidenav a:hover {
-  background-color: lightblue;
-}
-
-/* Style the content */
-.content {
-  top: 10vh;
-  left: 10vw;
-  padding-left: 3vw;
-  padding-top: 3vh;
-  border: 3px solid darkgreen;
-  position: fixed;
-  height: 90vh;
-  width: 90vw;
-}
-.column{
-  width: 10vw;
-}
-table{
+.drawer-content{
   width: 100%;
-  margin: 0;
-  background-color: aliceblue;
+  height: 100vh;
 }
-th{
-  background-color: aquamarine;
-  text-align: center;
-  max-width: 0;
+.drawer-menu{
+  width: 15vw;
 }
-tr{
-  text-align: right;
-  background-color: aliceblue;
-
+.page-content{
+  width: 60vw;
+  margin-left: 20vw;
+  margin-top:10vh;
 }
-td{
-  text-align: center;
-  max-width: 0;
-
+.page-wrapper{
+  background-color:#424242;
+}
+.menu-item{
+  background-color:#212121;
+}
+.title-bar-small{
+  vertical-align: middle;
+}
+.title-buttons-right{
+  float: right;
 }

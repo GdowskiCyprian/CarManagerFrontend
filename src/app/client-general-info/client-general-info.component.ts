@@ -10,7 +10,7 @@ import {ClientServiceService} from "../client-service.service";
 export class ClientGeneralInfoComponent implements OnInit {
   email:string | null = '';
   currentClient:any;
-  constructor(private router:Router, private service:ClientServiceService) { }
+  constructor(public router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {
