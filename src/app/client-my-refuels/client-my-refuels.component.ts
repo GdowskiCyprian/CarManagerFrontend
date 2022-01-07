@@ -11,7 +11,8 @@ export class ClientMyRefuelsComponent implements OnInit {
   email:string | null = '';
   currentClient:any;
   refuels: any;
-  constructor(private router:Router, private service:ClientServiceService) { }
+  displayedColumns: string[] = ['TypeOfFuel', 'Volume', 'Price', 'Delete'];
+  constructor(public router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {

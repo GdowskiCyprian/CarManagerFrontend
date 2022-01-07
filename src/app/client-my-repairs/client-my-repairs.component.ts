@@ -11,7 +11,8 @@ export class ClientMyRepairsComponent implements OnInit {
   allRepairs : any;
   currentClient:any;
   email:string | null = '';
-  constructor(private router:Router, private service:ClientServiceService) { }
+  displayedColumns: string[] = ['Name', 'Date', 'Description'];
+  constructor(public router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {

@@ -1,122 +1,41 @@
-* {
-  box-sizing: border-box;
+.drawer-button{
+  width: 15vw;
+  height: 7vh;
+  text-align: left;
 }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  width: 100%;
-}
-.topbar{
-  text-align: center;
-  border: 3px solid red;
-  position: fixed;
-  height: 10vh;
-  vertical-align: middle;
+.drawer-container {
   width: 100vw;
-  font-size: 3.5vw;
-  top: 0;
-  left: 0;
+  height: 100vh;
+  background-color: #212121;
 }
-
-/* Style the side navigation */
-.sidenav {
-  height: 90vh;
-  width: 10vw;
-  position: fixed;
-  z-index: 1;
-  top: 10vh;
-  left: 0;
-  border: 3px solid lightblue;
-  overflow-x: hidden;
-
+.drawer-content{
+  width: 100%;
+  height: 100vh;
 }
-
-
-/* Side navigation links */
-.sidenav a {
-  padding: 16px;
-  text-decoration: none;
-  display: block;
-  border-radius: 5px;
-}
-
-/* Change color on hover */
-.sidenav a:hover {
-  background-color: lightblue;
-}
-
-/* Style the content */
-.content {
-  top: 10vh;
-  left: 10vw;
-  padding-left: 3vw;
-  padding-top: 3vh;
-  border: 3px solid darkgreen;
-  position: fixed;
-  height: 90vh;
-  width: 90vw;
-}
-.repairtable{
-  table-layout: fixed
-}
-.mainth{
-  background-color: aquamarine;
-  text-align: center;
-  width: 10vw;
-  height: 5vh;
-}
-.mainthrepairpart{
-  background-color: aquamarine;
-  text-align: center;
-  width: 54vw;
-  height: 5vh;
-}
-.repairth{
-  background-color: aquamarine;
-  text-align: center;
-  height: 3vh;
+.drawer-menu{
   width: 15vw;
 }
-.repairthaction{
-  background-color: aquamarine;
-  text-align: center;
-  height: 1.5vh;
-  width: 7.5vw;
-
+.page-content{
+  width: 60vw;
+  margin-left: 20vw;
+  margin-top:10vh;
 }
-.repairtd{
-  background-color: aliceblue;
-  text-align: center;
-  height: 1.5vh;
-  width: 15vw;
-
+.page-wrapper{
+  background-color:#424242;
 }
-
-.repairtdaction{
-  background-color: aliceblue;
-
-  height: 1.5vh;
-  width: 7.5vw;
-
+.menu-item{
+  background-color:#212121;
 }
-.buttonrepairpart{
+.title-bar-small{
+  vertical-align: middle;
+}
+.title-buttons-right{
+  float: right;
+}
+.mat-elevation-z8{
   width: 100%;
-  height: 3vh;
-
-}
-tr{
   text-align: center;
-  background-color: aliceblue;
-
 }
-table{
-  width: 100%;
-
-  /*border: 3px solid blue;*/
-
-  margin: 0;
-  background-color: aliceblue;
+th{
+  text-align : center !important;
 }
-

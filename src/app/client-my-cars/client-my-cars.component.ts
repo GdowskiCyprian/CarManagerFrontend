@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ClientServiceService} from "../client-service.service";
+import {EditCarDialogComponent} from "../edit-car-dialog/edit-car-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-client-my-cars',
@@ -11,8 +13,8 @@ export class ClientMyCarsComponent implements OnInit {
   email:string | null = '';
   currentClient:any;
   cars: any;
-  displayedColumns: string[] = ['Manufacturer', 'Model', 'Version', 'Mileage', 'Power', 'Delete'];
-  constructor(public router:Router, private service:ClientServiceService) { }
+  displayedColumns: string[] = ['Manufacturer', 'Model', 'Version', 'Mileage', 'Power','Displacement', 'Year', 'Delete', 'Edit'];
+  constructor(public router:Router, private service:ClientServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {
@@ -38,5 +40,18 @@ export class ClientMyCarsComponent implements OnInit {
   deleteCar(id:number){
     this.service.deleteCar(id);
     window.location.reload();
+  }
+  openEditDialog(idCar:number, manufacturer:string, model:string, version:string, mileage:number, power:number, yearOfManufacture:number, displacement:number){
+    const dialogRef = this.dialog.open(EditCarDialogComponent,
+      {
+    width: '280px',
+      data: {manufacturer:manufacturer, model:model, version:version, mileage:mileage, power:power, yearOfManufacture:yearOfManufacture, idCar:idCar, displacement:displacement, idClient:this.currentClient.idClient},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    //do sth after close
+      window.location.reload();
+
+    });
+    console.log(idCar, manufacturer, model, version, mileage, power, yearOfManufacture);
   }
 }

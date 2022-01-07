@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ClientServiceService} from "../client-service.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-client-new-car',
@@ -25,7 +26,7 @@ export class ClientNewCarComponent implements OnInit {
   allCars: any;
   selectedCar:any;
   //end of section
-  constructor(private router:Router, private service:ClientServiceService) { }
+  constructor(public router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {

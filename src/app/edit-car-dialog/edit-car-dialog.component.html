@@ -1,0 +1,55 @@
+ <mat-card class="mat-elevation-z3">
+      <mat-card-title>
+        Edit your car
+      </mat-card-title>
+ </mat-card>
+ <mat-card style="margin-top: 10px">
+      <mat-card-content>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Car Manufacturer</mat-label>
+            <input matInput [(ngModel)]="data.manufacturer" placeholder="{{data.manufacturer}}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Model</mat-label>
+            <input matInput [(ngModel)]="data.model" placeholder="{{data.model}}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Version</mat-label>
+            <input matInput [(ngModel)]="data.version" placeholder="{{data.version}}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Power</mat-label>
+            <input matInput [(ngModel)]="data.power" placeholder="{{data.power}}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Displacement</mat-label>
+            <input matInput [(ngModel)]="data.displacement" placeholder="{{data.displacement}}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Mileage</mat-label>
+            <input matInput [(ngModel)]="data.mileage" placeholder="{{data.mileage}}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Year</mat-label>
+            <input matInput [(ngModel)]="data.yearOfManufacture" placeholder="{{data.yearOfManufacture}}">
+          </mat-form-field>
+        </p>
+        <mat-dialog-actions>
+          <button mat-button color="accent" (click)="saveChanges()" class="mat-elevation-z3">Save</button>
+          <button mat-button mat-dialog-close color="warn" class="mat-elevation-z3">Cancel</button>
+        </mat-dialog-actions>
+      </mat-card-content>
+ </mat-card>

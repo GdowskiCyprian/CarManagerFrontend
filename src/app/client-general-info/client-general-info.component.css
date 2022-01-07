@@ -24,8 +24,12 @@
 .page-wrapper{
   background-color:#424242;
 }
+
+
+
 .menu-item{
   background-color:#212121;
+  margin: 10px;
 }
 .title-bar-small{
   vertical-align: middle;

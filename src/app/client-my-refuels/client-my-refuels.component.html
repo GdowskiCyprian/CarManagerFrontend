@@ -3,44 +3,63 @@
 <head>
 </head>
 <body>
-<div class="topbar">
-  CarManager - Hello {{email}}
-</div>
+<mat-drawer-container class="drawer-container" hasBackdrop="false">
+  <mat-drawer #drawer mode="push" class="drawer-menu">
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientgeneralinfo']);">General Info</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmycars']);">My Cars</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmyrefuels']);">My Refuels</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmyrepairs']);">My Repairs</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewcar']);">New Car</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewrefuel']);">New Refuel</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewrepair']);">New Repair</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientchangepassword']);">Change Password</button>
+  </mat-drawer>
+  <mat-drawer-content class="drawer-content">
+    <mat-card class="title-bar">
+      <mat-card-title class="title-bar-small">
+        <button mat-raised-button (click)="drawer.toggle()">
+          <mat-icon color="accent">menu</mat-icon>
+        </button>
+        CarManager - Hello {{email}}
+        <div class="title-buttons-right">
+          <button mat-raised-button (click)="logout()">
+            <mat-icon color="accent">power_settings_new</mat-icon>
+            Logout
+          </button>
+        </div>
+      </mat-card-title>
+    </mat-card>
+    <div class="page-content">
+      <mat-card class="page-wrapper">
+        <table mat-table [dataSource]="refuels" class="mat-elevation-z8">
+          <ng-container matColumnDef="TypeOfFuel" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Type Of Fuel </th>
+            <td mat-cell *matCellDef="let refuel"> {{refuel.typeOfFuel}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Volume" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Volume[L] </th>
+            <td mat-cell *matCellDef="let refuel"> {{refuel.volume}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Price" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Price[PLN] </th>
+            <td mat-cell *matCellDef="let refuel"> {{refuel.price}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Delete" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let refuel">
+              <button mat-button class="delete-button" color="accent" (click)="deleteRefuel(refuel.idRefuel)">Delete</button>
+            </td>
+          </ng-container>
 
-<div class="sidenav">
-  <a href="/clientgeneralinfo">General Info</a>
-  <a href="/clientmycars">My Cars</a>
-  <a href="/clientmyrefuels">My Refuels</a>
-  <a href="/clientmyrepairs">My Repairs</a>
-  <a href="/clientnewcar">New Car</a>
-  <a href="/clientnewrefuel">New Refuel</a>
-  <a href="/clientnewrepair">New Repair</a>
-  <a (click)="logout()">Logout</a>
-  <a href="clientchangepassword">Change Password</a>
-</div>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
 
-<div class="content">
-  <table class="contenttable">
-    <tr class="tablerow">
-      <th class="tableheader">TypeOfFuel</th>
-      <th class="tableheader">Volume</th>
-      <th class="tableheader">Price</th>
+      </mat-card>
+    </div>
 
-      <th class="tableheader">delete</th>
-    </tr>
-    <tr *ngFor="let refuel of refuels" class="tablerow">
-      <td class="tabledata">{{refuel.typeOfFuel}}</td>
-      <td class="tabledata">{{refuel.volume}}</td>
-      <td class="tabledata">{{refuel.price}}</td>
-
-      <td>
-        <button class="tabledatabutton" (click)="deleteRefuel(refuel.idRefuel)">Delete</button>
-      </td>
-    </tr>
-  </table>
-</div>
-
-
-
+  </mat-drawer-content>
+</mat-drawer-container>
 </body>
 </html>
+

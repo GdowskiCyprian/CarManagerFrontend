@@ -1,85 +1,220 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="topbar">-->
+<!--  CarManager - Hello {{email}}-->
+<!--</div>-->
+
+<!--<div class="sidenav">-->
+<!--  <a href="/clientgeneralinfo">General Info</a>-->
+<!--  <a href="/clientmycars">My Cars</a>-->
+<!--  <a href="/clientmyrefuels">My Refuels</a>-->
+<!--  <a href="/clientmyrepairs">My Repairs</a>-->
+<!--  <a href="/clientnewcar">New Car</a>-->
+<!--  <a href="/clientnewrefuel">New Refuel</a>-->
+<!--  <a href="/clientnewrepair">New Repair</a>-->
+<!--  <a (click)="logout()">Logout</a>-->
+<!--  <a href="clientchangepassword">Change Password</a>-->
+<!--</div>-->
+
+<!--<div class="content">-->
+<!--  <div class="addcarbox">-->
+<!--    <form>-->
+<!--      <div>-->
+<!--        <p>-->
+<!--          <input type="text" [(ngModel)]="manufacturer" placeholder="manufacturer" name="manufacturer">-->
+<!--        </p>-->
+<!--        <p>-->
+<!--          <input type="text"[(ngModel)]="model" placeholder="model" name="model">-->
+<!--        </p>-->
+<!--        <p>-->
+<!--          <input type="text" [(ngModel)]="version"  placeholder="version" name="version">-->
+<!--        </p>-->
+<!--        <p>-->
+<!--          <input type="number"  [(ngModel)]="power" placeholder="power" name="power">-->
+<!--        </p>-->
+<!--        <p>-->
+<!--          <input type="number"  [(ngModel)]="displacement" placeholder="displacement" name="displacement">-->
+<!--        </p>-->
+<!--        <p>-->
+<!--          <input type="number"  [(ngModel)]="mileage" placeholder="mileage" name="mileage">-->
+<!--        </p>-->
+<!--        <p>-->
+<!--          <input type="text"  [(ngModel)]="yearOfManufacture" placeholder="yearOfManufacture" name="yearOfManufacture">-->
+<!--        </p>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <p>-->
+<!--          <input type="submit" value="Submit" (click)="addNewCar()">-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--  <div class="addfueltankbox">-->
+<!--    <form>-->
+<!--      <p>-->
+<!--        <input type="number" [(ngModel)]="capacity" placeholder="capacity" name="capacity">-->
+<!--      </p>-->
+<!--      <p>-->
+<!--        <select name="capacity" [(ngModel)]="typeOfFuel" placeholder="capacity">-->
+<!--          <option value="PETROL">PETROL</option>-->
+<!--          <option value="LPG">LPG</option>-->
+<!--          <option value="DIESEL">DIESEL</option>-->
+<!--        </select>-->
+<!--      </p>-->
+<!--      <p>-->
+<!--        <select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">-->
+<!--          <option *ngFor="let car of allCars"-->
+<!--                  [ngValue]="car">-->
+<!--            {{car.manufacturer}} {{car.model}} {{car.version}}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </p>-->
+<!--      <p>-->
+<!--        <input type="submit" value="Submit" (click)="addNewFuelTank()">-->
+<!--      </p>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
-<div class="topbar">
-  CarManager - Hello {{email}}
-</div>
+<mat-drawer-container class="drawer-container" hasBackdrop="false">
+  <mat-drawer #drawer mode="push" class="drawer-menu">
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientgeneralinfo']);">General Info</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmycars']);">My Cars</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmyrefuels']);">My Refuels</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmyrepairs']);">My Repairs</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewcar']);">New Car</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewrefuel']);">New Refuel</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewrepair']);">New Repair</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientchangepassword']);">Change Password</button>
+  </mat-drawer>
+  <mat-drawer-content class="drawer-content">
+    <mat-card class="title-bar">
+      <mat-card-title class="title-bar-small">
+        <button mat-raised-button (click)="drawer.toggle()">
+          <mat-icon color="accent">menu</mat-icon>
+        </button>
+        CarManager - Hello {{email}}
+        <div class="title-buttons-right">
+          <button mat-raised-button (click)="logout()">
+            <mat-icon color="accent">power_settings_new</mat-icon>
+            Logout
+          </button>
+        </div>
+      </mat-card-title>
+    </mat-card>
+    <div class="page-content">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Add new car
+            </mat-panel-title>
+            <mat-panel-description>
+              Here you can add new car to your account
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Manufacturer</mat-label>
+              <input matInput [(ngModel)]="manufacturer">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Model</mat-label>
+              <input matInput [(ngModel)]="model">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Version</mat-label>
+              <input matInput [(ngModel)]="version">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Power</mat-label>
+              <input matInput [(ngModel)]="power">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Displacement</mat-label>
+              <input matInput [(ngModel)]="displacement">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Mileage</mat-label>
+              <input matInput [(ngModel)]="mileage">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Year Of Manufacture</mat-label>
+              <input matInput [(ngModel)]="yearOfManufacture">
+            </mat-form-field>
+          </p>
+          <p>
+            <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewCar()">Save</button>
+          </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Add new fuel tank
+            </mat-panel-title>
+            <mat-panel-description>
+              Here you can specify what fuel tank/s your car has
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Capacity</mat-label>
+              <input matInput [(ngModel)]="capacity">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Type of fuel</mat-label>
+              <mat-select [(ngModel)]="typeOfFuel">
+                <mat-option value="PETROL">PETROL</mat-option>
+                <mat-option value="LPG">LPG</mat-option>
+                <mat-option value="DIESEL">DIESEL</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Car</mat-label>
+              <mat-select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let car of allCars" [value]="car">
+                  {{car.manufacturer}} {{car.model}} {{car.version}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewFuelTank()">Save</button>
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
 
-<div class="sidenav">
-  <a href="/clientgeneralinfo">General Info</a>
-  <a href="/clientmycars">My Cars</a>
-  <a href="/clientmyrefuels">My Refuels</a>
-  <a href="/clientmyrepairs">My Repairs</a>
-  <a href="/clientnewcar">New Car</a>
-  <a href="/clientnewrefuel">New Refuel</a>
-  <a href="/clientnewrepair">New Repair</a>
-  <a (click)="logout()">Logout</a>
-  <a href="clientchangepassword">Change Password</a>
-</div>
+    </div>
 
-<div class="content">
-  <div class="addcarbox">
-    <form>
-      <div>
-        <p>
-          <input type="text" [(ngModel)]="manufacturer" placeholder="manufacturer" name="manufacturer">
-        </p>
-        <p>
-          <input type="text"[(ngModel)]="model" placeholder="model" name="model">
-        </p>
-        <p>
-          <input type="text" [(ngModel)]="version"  placeholder="version" name="version">
-        </p>
-        <p>
-          <input type="number"  [(ngModel)]="power" placeholder="power" name="power">
-        </p>
-        <p>
-          <input type="number"  [(ngModel)]="displacement" placeholder="displacement" name="displacement">
-        </p>
-        <p>
-          <input type="number"  [(ngModel)]="mileage" placeholder="mileage" name="mileage">
-        </p>
-        <p>
-          <input type="text"  [(ngModel)]="yearOfManufacture" placeholder="yearOfManufacture" name="yearOfManufacture">
-        </p>
-      </div>
-      <div>
-        <p>
-          <input type="submit" value="Submit" (click)="addNewCar()">
-        </p>
-      </div>
-    </form>
-  </div>
-  <div class="addfueltankbox">
-    <form>
-      <p>
-        <input type="number" [(ngModel)]="capacity" placeholder="capacity" name="capacity">
-      </p>
-      <p>
-        <select name="capacity" [(ngModel)]="typeOfFuel" placeholder="capacity">
-          <option value="PETROL">PETROL</option>
-          <option value="LPG">LPG</option>
-          <option value="DIESEL">DIESEL</option>
-        </select>
-      </p>
-      <p>
-        <select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let car of allCars"
-                  [ngValue]="car">
-            {{car.manufacturer}} {{car.model}} {{car.version}}
-          </option>
-        </select>
-      </p>
-      <p>
-        <input type="submit" value="Submit" (click)="addNewFuelTank()">
-      </p>
-    </form>
-  </div>
-</div>
-
-
-
+  </mat-drawer-content>
+</mat-drawer-container>
 </body>
 </html>

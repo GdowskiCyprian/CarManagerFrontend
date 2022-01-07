@@ -119,6 +119,14 @@ export class ClientServiceService {
       ).subscribe(resp => sessionStorage.setItem("password", newpassword), resp => console.log(resp))
 
   }
+  putCar(idCar:number,manufacturer:string, model:string, version:string, power:number, mileage:number, yearOfManufacture:number, displacement:number, idClient:number){
+    console.log()
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.put("http://localhost:8080/api/cars/putcar",
+      {manufacturer:manufacturer, model:model, version:version, power:power, idCar:idCar, mileage:mileage, yearOfManufacture:yearOfManufacture, displacement:displacement, idClient:idClient},
+      {headers}).subscribe(resp => console.log(resp))
+  }
 }
 interface Car{
   manufacturer:string;

@@ -1,61 +1,121 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="topbar">-->
+<!--  CarManager - Hello {{email}}-->
+<!--</div>-->
+
+<!--<div class="sidenav">-->
+<!--  <a href="/clientgeneralinfo">General Info</a>-->
+<!--  <a href="/clientmycars">My Cars</a>-->
+<!--  <a href="/clientmyrefuels">My Refuels</a>-->
+<!--  <a href="/clientmyrepairs">My Repairs</a>-->
+<!--  <a href="/clientnewcar">New Car</a>-->
+<!--  <a href="/clientnewrefuel">New Refuel</a>-->
+<!--  <a href="/clientnewrepair">New Repair</a>-->
+<!--  <a (click)="logout()">Logout</a>-->
+<!--  <a href="clientchangepassword">Change Password</a>-->
+<!--</div>-->
+
+<!--<div class="content">-->
+<!--  <table>-->
+<!--    <tr>-->
+
+<!--      <th class="mainth">date</th>-->
+<!--      <th class="mainth">description</th>-->
+<!--      <th class="mainth">name</th>-->
+<!--      &lt;!&ndash;      <th class="mainthrepairpart">Repair Part Menu</th>&ndash;&gt;-->
+<!--      <table class="headersmenu">-->
+<!--        <tr>-->
+<!--          <th class="repairth">Part name</th>-->
+<!--          <th class="repairth">Part price($)</th>-->
+
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </tr>-->
+<!--    <tr *ngFor="let repair of allRepairs">-->
+
+<!--      <td class="normaltd">{{repair.date | date:'dd/MM/yyyy'}}</td>-->
+<!--      <td class="normaltd">{{repair.description}}</td>-->
+<!--      <td class="normaltd">{{repair.name}}</td>-->
+<!--      <table class="repairtable">-->
+<!--        <tr *ngFor="let repairPart of repair['repairParts']">-->
+<!--          <td class="repairtd">{{repairPart.name}}</td>-->
+<!--          <td class="repairtd">{{repairPart.price}}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+
+
+
+
+<!--    </tr>-->
+
+<!--  </table>-->
+<!--</div>-->
+
+
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
-<div class="topbar">
-  CarManager - Hello {{email}}
-</div>
+<mat-drawer-container class="drawer-container" hasBackdrop="false">
+  <mat-drawer #drawer mode="push" class="drawer-menu">
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientgeneralinfo']);">General Info</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmycars']);">My Cars</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmyrefuels']);">My Refuels</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientmyrepairs']);">My Repairs</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewcar']);">New Car</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewrefuel']);">New Refuel</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientnewrepair']);">New Repair</button>
+    <button mat-button class="drawer-button" color="accent" (click)="router.navigate(['clientchangepassword']);">Change Password</button>
+  </mat-drawer>
+  <mat-drawer-content class="drawer-content">
+    <mat-card class="title-bar">
+      <mat-card-title class="title-bar-small">
+        <button mat-raised-button (click)="drawer.toggle()">
+          <mat-icon color="accent">menu</mat-icon>
+        </button>
+        CarManager - Hello {{email}}
+        <div class="title-buttons-right">
+          <button mat-raised-button (click)="logout()">
+            <mat-icon color="accent">power_settings_new</mat-icon>
+            Logout
+          </button>
+        </div>
+      </mat-card-title>
+    </mat-card>
+    <div class="page-content">
+      <mat-card class="page-wrapper">
+        <table mat-table [dataSource]="allRepairs" class="mat-elevation-z8">
+          <ng-container matColumnDef="Name" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let repair"> {{repair.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Date" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let repair"> {{repair.date | date:'dd/MM/yyyy'}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Description" class="table-item">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let repair"> {{repair.description}} </td>
+          </ng-container>
 
-<div class="sidenav">
-  <a href="/clientgeneralinfo">General Info</a>
-  <a href="/clientmycars">My Cars</a>
-  <a href="/clientmyrefuels">My Refuels</a>
-  <a href="/clientmyrepairs">My Repairs</a>
-  <a href="/clientnewcar">New Car</a>
-  <a href="/clientnewrefuel">New Refuel</a>
-  <a href="/clientnewrepair">New Repair</a>
-  <a (click)="logout()">Logout</a>
-  <a href="clientchangepassword">Change Password</a>
-</div>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
 
-<div class="content">
-  <table>
-    <tr>
+          ></tr>
+        </table>
 
-      <th class="mainth">date</th>
-      <th class="mainth">description</th>
-      <th class="mainth">name</th>
-      <!--      <th class="mainthrepairpart">Repair Part Menu</th>-->
-      <table class="headersmenu">
-        <tr>
-          <th class="repairth">Part name</th>
-          <th class="repairth">Part price($)</th>
+      </mat-card>
+    </div>
 
-        </tr>
-      </table>
-    </tr>
-    <tr *ngFor="let repair of allRepairs">
-
-      <td class="normaltd">{{repair.date | date:'dd/MM/yyyy'}}</td>
-      <td class="normaltd">{{repair.description}}</td>
-      <td class="normaltd">{{repair.name}}</td>
-      <table class="repairtable">
-        <tr *ngFor="let repairPart of repair['repairParts']">
-          <td class="repairtd">{{repairPart.name}}</td>
-          <td class="repairtd">{{repairPart.price}}</td>
-        </tr>
-      </table>
-
-
-
-
-    </tr>
-
-  </table>
-</div>
-
-
-
+  </mat-drawer-content>
+</mat-drawer-container>
 </body>
 </html>

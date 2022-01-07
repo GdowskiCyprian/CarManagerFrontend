@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {DataServiceService} from "./data-service.service";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { RepairShopMyClientsComponent } from './repair-shop-my-clients/repair-shop-my-clients.component';
 import { RepairShopMyRepairsComponent } from './repair-shop-my-repairs/repair-shop-my-repairs.component';
@@ -28,6 +28,15 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { EditCarDialogComponent } from './edit-car-dialog/edit-car-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ClientServiceService} from "./client-service.service";
+import {MatInputModule} from "@angular/material/input";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -45,7 +54,9 @@ import {MatTableModule} from "@angular/material/table";
     ClientMyRepairsComponent,
     ClientNewRepairComponent,
     ClientChangePasswordComponent,
-    RepairShopChangePasswordComponent
+    RepairShopChangePasswordComponent,
+    EditCarDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -59,9 +70,17 @@ import {MatTableModule} from "@angular/material/table";
     MatOptionModule,
     MatCardModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatStepperModule,
+    MatExpansionModule
   ],
-  providers: [DataServiceService],
+  providers: [DataServiceService, ClientServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
