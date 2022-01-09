@@ -15,7 +15,8 @@ export class RepairShopMyRepairsComponent implements OnInit {
   currentRepairShop : any;
   allRepairs : any;
   pipe = new DatePipe('pl-PL');
-  constructor(private router:Router, private service:DataServiceService) { }
+  displayedColumns: string[] = ['name', 'description', 'date']
+  constructor(public router:Router, private service:DataServiceService) { }
 
   ngOnInit(): void
   {

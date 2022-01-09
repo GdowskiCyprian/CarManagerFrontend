@@ -31,12 +31,14 @@ import {MatTableModule} from "@angular/material/table";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import { EditCarDialogComponent } from './edit-car-dialog/edit-car-dialog.component';
+import {EditCarDialogComponent } from './edit-car-dialog/edit-car-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ClientServiceService} from "./client-service.service";
 import {MatInputModule} from "@angular/material/input";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatExpansionModule} from "@angular/material/expansion";
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -78,7 +80,11 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatDialogModule,
     MatInputModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   providers: [DataServiceService, ClientServiceService],
   bootstrap: [AppComponent]

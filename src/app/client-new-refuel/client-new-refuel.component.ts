@@ -17,7 +17,7 @@ export class ClientNewRefuelComponent implements OnInit {
   allCars: any;
   selectedCar:any;
   //end of section
-  constructor(private router:Router, private service:ClientServiceService) { }
+  constructor(public router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {

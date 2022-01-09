@@ -11,8 +11,9 @@ export class RepairShopMyClientsComponent implements OnInit {
 
   email:string | null = '';
   currentRepairShop : any;
-  constructor(private router:Router, private service:DataServiceService) { }
+  constructor(public router:Router, private service:DataServiceService) { }
   allClients: any;
+  displayedColumns: string[] = ['name', 'surname', 'phoneNumber']
   ngOnInit(): void
   {
     if(!this.service.isLoggedIn())

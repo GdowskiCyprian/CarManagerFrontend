@@ -14,7 +14,7 @@ export class RepairShopChangePasswordComponent implements OnInit {
   oldpassword:string | null = "";
   newpassword:string | null = "";
   newpasswordconfirm:string | null = "";
-  constructor(private router:Router, private service:DataServiceService) { }
+  constructor(public router:Router, private service:DataServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {

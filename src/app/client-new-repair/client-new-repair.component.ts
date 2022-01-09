@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ClientServiceService} from "../client-service.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-client-new-repair',
@@ -8,14 +9,15 @@ import {ClientServiceService} from "../client-service.service";
   styleUrls: ['./client-new-repair.component.css']
 })
 export class ClientNewRepairComponent implements OnInit {
+  datePipe: DatePipe = new DatePipe('en-US');
   currentClient:any;
   email:string | null = 'Your Email';
   name:string = "";
   description:string= "";
-  date:string= "";
+  date:string | null= "";
   car:any;
   cars:any;
-  constructor(private router:Router, private service:ClientServiceService) { }
+  constructor(public router:Router, private service:ClientServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {
@@ -39,6 +41,8 @@ export class ClientNewRepairComponent implements OnInit {
     this.service.logout();
   }
   addNewRepair(){
+    this.date = this.datePipe.transform(this.date, 'yyyy-MM-dd')
+    if(this.date != null)
     this.service.postNewRepair(this.name, this.description, this.date,this.car.idCar)
   }
 

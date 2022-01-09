@@ -1,135 +1,43 @@
-* {
-  box-sizing: border-box;
 
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  width: 100%;
-}
-table{
-  width: 100%;
-
-  /*border: 3px solid blue;*/
-
-  margin: 0;
-  background-color: aliceblue;
-}
-.repairtable{
-  table-layout: fixed
-}
-.mainth{
-  background-color: aquamarine;
-  text-align: center;
-  width: 10vw;
-  height: 5vh;
-}
-.mainthrepairpart{
-  background-color: aquamarine;
-  text-align: center;
-  width: 54vw;
-  height: 5vh;
-}
-.repairth{
-  background-color: aquamarine;
-  text-align: center;
-  height: 1.5vh;
+.drawer-button{
   width: 15vw;
-
+  height: 7vh;
+  text-align: left;
 }
-.repairthaction{
-  background-color: aquamarine;
-  text-align: center;
-  height: 1.5vh;
-  width: 7.5vw;
-
-}
-.repairtd{
-  background-color: aliceblue;
-  text-align: center;
-  height: 1.5vh;
-  width: 15vw;
-
-}
-
-.repairtdaction{
-  background-color: aliceblue;
-
-  height: 1.5vh;
-  width: 7.5vw;
-
-}
-.buttonrepairpart{
-  width: 100%;
-  height: 3vh;
-
-}
-tr{
-  text-align: right;
-  background-color: aliceblue;
-
-}
-
-.headersmenu{
-  background-color: aquamarine;
-  text-align: center;
-  width: 54vw;
-  height: 5vh;
-}
-.topbar{
-  text-align: center;
-  border: 3px solid red;
-  position: fixed;
-  height: 10vh;
-  vertical-align: middle;
+.drawer-container {
   width: 100vw;
-  font-size: 3.5vw;
-  top: 0;
-  left: 0;
+  height: 100vh;
+  background-color: #212121;
 }
-
-/* Style the side navigation */
-.sidenav {
-  height: 90vh;
-  width: 10vw;
-  position: fixed;
-  z-index: 1;
-  top: 10vh;
-  left: 0;
-  border: 3px solid lightblue;
-  overflow-x: hidden;
-
+.drawer-content{
+  width: 100%;
+  height: 100vh;
 }
-
-
-/* Side navigation links */
-.sidenav a {
-  padding: 16px;
-  text-decoration: none;
-  display: block;
-  border-radius: 5px;
+.drawer-menu{
+  width: 15vw;
 }
-
-/* Change color on hover */
-.sidenav a:hover {
-  background-color: lightblue;
+.page-content{
+  width: 60vw;
+  margin-left: 20vw;
+  margin-top:10vh;
 }
-
-/* Style the content */
-.content {
-  top: 10vh;
-  left: 10vw;
-  border: 3px solid darkgreen;
-  position: fixed;
-  height: 90vh;
-  width: 90vw;
-  padding: 3vh 3vw;
+.page-wrapper{
+  background-color:#424242;
 }
-.normaltd{
+.menu-item{
+  background-color:#212121;
+  margin: 10px;
+}
+.title-bar-small{
+  vertical-align: middle;
+}
+.title-buttons-right{
+  float: right;
+}
+.mat-elevation-z8{
+  width: 100%;
   text-align: center;
 }
-
-
-
+th{
+  text-align : center !important;
+}

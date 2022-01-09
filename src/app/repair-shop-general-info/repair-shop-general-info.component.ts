@@ -11,7 +11,7 @@ export class RepairShopGeneralInfoComponent implements OnInit {
 
   email:string | null = '';
   currentRepairShop : any;
-  constructor(private router:Router, private service:DataServiceService) { }
+  constructor(public router:Router, private service:DataServiceService) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {
