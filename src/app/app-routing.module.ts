@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:"clientnewrepair", component:ClientNewRepairComponent},
   {path:"clientmyrepairs", component:ClientMyRepairsComponent},
   {path:"repairshopchangepassword", component:RepairShopChangePasswordComponent},
-  {path:"clientchangepassword", component: ClientChangePasswordComponent},
+  {path:"clientchangepassword", component: ClientChangePasswordComponent}
 ];
 
 @NgModule({

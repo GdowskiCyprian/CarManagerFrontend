@@ -1,95 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--</head>-->
-<!--<body>-->
-<!--  <div class="maindiv">-->
-<!--    <div class = "logindiv">-->
-<!--      <form id="accesspanel" action="login" method="post" class="loginform">-->
-<!--        <div class="inset">-->
-<!--          <p>-->
-<!--            <input type="text" name="username" [(ngModel)]="username" id="email" placeholder="username">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="password">-->
-<!--          </p>-->
-<!--        </div>-->
-<!--        <p>-->
-<!--          <input type="submit" name="Login" id="go" value="Login" (click)="loginLoginComp()">-->
-<!--        </p>-->
-<!--      </form>-->
-<!--      <div>-->
-<!--        <input-->
-<!--          style="display: none"-->
-<!--          type="file" (change)="onFileChanged($event)"-->
-<!--          #fileInput>-->
-<!--        <button (click)="fileInput.click()">Select File</button>-->
-<!--        <button (click)="onUpload()">Upload!</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="registerrepairshopdiv">-->
-<!--      <form>-->
-<!--        <div>-->
-<!--          <p>-->
-<!--            <input type="text" name="email" placeholder="email" [(ngModel)]="repairshop.email">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="password" name="password" placeholder="password" [(ngModel)]="repairshop.password">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="text" name="name" placeholder="name" [(ngModel)]="repairshop.name">-->
-<!--          </p>-->
-<!--          <label>Numer telefonu</label>-->
-<!--          <p>-->
-<!--            <input type="number" name="phonenumber" placeholder="phonenumber" [(ngModel)]="repairshop.phoneNumber">-->
-<!--          </p>-->
-<!--          <label>Numer NIP</label>-->
-<!--          <p>-->
-<!--            <input type="number" name="nip" placeholder="nip" [(ngModel)]="repairshop.nip">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="submit" name="registerrepairshop" value="registerrepairshop" (click)="registerRepairShop()">-->
-<!--          </p>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--    <div class="registerclientdiv">-->
-<!--      <form>-->
-<!--        <div>-->
-<!--          <p>-->
-<!--            <input type="text" name="email" placeholder="email" [(ngModel)]="client.email">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="password" name="password" placeholder="password" [(ngModel)]="client.password">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="text" name="name" placeholder="name" [(ngModel)]="client.name">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="text" name="surname" placeholder="surname" [(ngModel)]="client.surname">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="number" name="phonenumber" placeholder="phonenumber" [(ngModel)]="client.phoneNumber">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <select [(ngModel)]="selectedRepairShop" [ngModelOptions]="{standalone: true}">-->
-<!--              <option *ngFor="let repairShop of allRepairShops"-->
-<!--                      [ngValue]="repairShop">-->
-<!--                {{repairShop.name}}-->
-<!--              </option>-->
-
-<!--            </select>-->
-<!--          </p>-->
-<!--          <p>-->
-<!--            <input type="submit" name="registerclient" value="registerclient" (click)="registerClient()">-->
-<!--          </p>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,9 +6,7 @@
 <div class="drawer-content">
 <mat-card class="title-bar">
   <mat-card-title class="title-bar-small">
-
     CarManager
-
   </mat-card-title>
 </mat-card>
 <div class="page-content">
@@ -114,21 +20,24 @@
           Here you can login to your account
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Username</mat-label>
-          <input matInput [(ngModel)]="username">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Password</mat-label>
-          <input matInput [(ngModel)]="password" type="password">
-        </mat-form-field>
-      </p>
-      <p>
-        <button mat-button color="accent" class="mat-elevation-z3" (click)="loginLoginComp()">Login</button>
-      </p>
+      <form #loginForm="ngForm">
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="username" required name="loginEmail" pattern="[a-zA-Z0-9.-_]{1,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="password" type="password" required name="loginPassword" pattern="[a-zA-Z0-9.-_]{1,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <button mat-button color="accent" class="mat-elevation-z3" (click)="loginLoginComp()"
+                  [disabled]="loginForm.invalid">Login</button>
+        </p>
+      </form>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -139,49 +48,53 @@
           Here you can register as a client
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="client.email">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Password</mat-label>
-          <input matInput [(ngModel)]="client.password" type="password">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="client.name">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Surname</mat-label>
-          <input matInput [(ngModel)]="client.surname">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Phone number</mat-label>
-          <input matInput [(ngModel)]="client.phoneNumber">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Your Repair shop</mat-label>
-          <mat-select [(ngModel)]="selectedRepairShop" [ngModelOptions]="{standalone: true}">
-            <mat-option *ngFor="let repairShop of allRepairShops" [value]="repairShop">
-              {{repairShop.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
-        <button mat-button color="accent" class="mat-elevation-z3" (click)="registerClient()">Register Client</button>
-      </p>
+      <form #clientRegisterForm="ngForm">
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="client.email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required
+                   type="text" name="ClientEmail">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="client.password" type="password" required name="ClientPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="client.name" required name="ClientName" pattern="[a-zA-Z]{1,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Surname</mat-label>
+            <input matInput [(ngModel)]="client.surname" required name="ClientSurname" pattern="[a-zA-Z]{1,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Phone number</mat-label>
+            <input matInput [(ngModel)]="client.phoneNumber" required name="ClientPhoneNumber" pattern="[0-9]{9,9}" >
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Your Repair shop</mat-label>
+            <mat-select [(ngModel)]="selectedRepairShop" [ngModelOptions]="{standalone: true}" required>
+              <mat-option *ngFor="let repairShop of allRepairShops" [value]="repairShop">
+                {{repairShop.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <button mat-button color="accent" class="mat-elevation-z3" (click)="registerClient()" name="ClientButton"
+                  [disabled]="clientRegisterForm.invalid">Register Client</button>
+        </p>
+      </form>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -192,39 +105,44 @@
           Here you can register as a repair shop
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="repairshop.email">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Password</mat-label>
-          <input matInput [(ngModel)]="repairshop.password" type="password">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="repairshop.name">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Phone number</mat-label>
-          <input matInput [(ngModel)]="repairshop.phoneNumber">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>NIP</mat-label>
-          <input matInput [(ngModel)]="repairshop.nip">
-        </mat-form-field>
-      </p>
-      <p>
-        <button mat-button color="accent" class="mat-elevation-z3" (click)="registerRepairShop()">Register Repair Shop</button>
-      </p>
+      <form #repairShopRegisterForm="ngForm">
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="repairshop.email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required
+            type="text" name="RepairShopEmail">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="repairshop.password" type="password" required name="RepairShopPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="repairshop.name" required name="RepairShopName" pattern="[a-zA-Z]{1,}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Phone number</mat-label>
+            <input matInput [(ngModel)]="repairshop.phoneNumber" required name="RepairShopPhoneNumber" pattern="[0-9]{9,9}">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>NIP</mat-label>
+            <input matInput [(ngModel)]="repairshop.nip" required name="RepairShopNIP" pattern="[0-9]{8,8}">
+          </mat-form-field>
+        </p>
+        <p>
+          <button mat-button color="accent" class="mat-elevation-z3" (click)="registerRepairShop()" name="RepairShopButton"
+                  [disabled]="repairShopRegisterForm.invalid">
+            Register Repair Shop</button>
+        </p>
+      </form>
     </mat-expansion-panel>
   </mat-accordion>
 

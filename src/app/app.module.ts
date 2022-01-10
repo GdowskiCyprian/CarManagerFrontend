@@ -39,6 +39,7 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     ClientNewRepairComponent,
     ClientChangePasswordComponent,
     RepairShopChangePasswordComponent,
-    EditCarDialogComponent
+    EditCarDialogComponent,
 
   ],
   imports: [
@@ -85,6 +86,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatButtonModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    MatSortModule,
   ],
   providers: [DataServiceService, ClientServiceService],
   bootstrap: [AppComponent]
