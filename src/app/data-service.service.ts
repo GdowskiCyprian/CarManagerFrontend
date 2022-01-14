@@ -92,8 +92,9 @@ export class DataServiceService {
   postNewRepair(name:string, description:string, date:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
-    this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers, responseType: "text" as "json"})
+    this.http.post("http://localhost:8080/api/repairs/postRepair",
+      {name: name, date:date, description:description, idCar:idCar}
+      , {headers, responseType: "text" as "json"})
       .subscribe(
       next=> {
         if (typeof next === "string") {
@@ -107,8 +108,9 @@ export class DataServiceService {
   postNewRepairPart(partname:string, partdescription:string, partprice:number, idRepair:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    let newreparpart:RepairPart = {partname:partname, partdescription:partdescription, partprice:partprice, idRepair:idRepair}
-    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart", newreparpart, {headers})
+    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart",
+      {partname:partname, partdescription:partdescription, partprice:partprice, idRepair:idRepair},
+      {headers})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -125,15 +127,14 @@ export class DataServiceService {
   phoneNumber: number,
   nip:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json'});
-    let repairShop:RepairShop = {
+  return this.http.post("http://localhost:8080/register/repairshop",
+    {
       email:email,
       password:password,
       name:name,
       phoneNumber:phoneNumber,
       nip:nip
-    }
-  return this.http.post("http://localhost:8080/register/repairshop",
-    repairShop,
+    },
     {headers, responseType: 'text' as 'json'})
     .subscribe(
       next=> {
@@ -155,14 +156,13 @@ export class DataServiceService {
     idRepairShop:number
   ){
     const headers = new HttpHeaders({ 'Content-Type':'application/json'});
-    let client:Client = {email: email,
-      password: password,
-      name: name,
-      surname: surname,
-      phoneNumber:phoneNumber,
-      idRepairShop:idRepairShop}
     this.http.post("http://localhost:8080/register/client",
-      client,
+      {email: email,
+        password: password,
+        name: name,
+        surname: surname,
+        phoneNumber:phoneNumber,
+        idRepairShop:idRepairShop},
       {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
@@ -187,30 +187,4 @@ export class DataServiceService {
     ).subscribe(() => sessionStorage.setItem("password", newpassword))
   }
 }
-interface Repair{
-  name:string;
-  date:string;
-  description:string;
-  idCar:number;
-}
-interface RepairPart{
-  partname:string;
-  partdescription:string;
-  partprice:number;
-  idRepair:number;
-}
-interface Client{
-  email: string,
-  password: string,
-  name: string,
-  surname: string,
-  phoneNumber:number,
-  idRepairShop:number
-}
-interface RepairShop {
-  email: string,
-  password: string,
-  name: string,
-  phoneNumber: number,
-  nip:number
-}
+

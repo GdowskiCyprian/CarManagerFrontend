@@ -80,7 +80,7 @@ export class ClientServiceService {
     idClient:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    let car:Car = {
+    this.http.post("http://localhost:8080/api/cars/postCar", {
       displacement: displacement,
       idClient: idClient,
       mileage: mileage,
@@ -89,8 +89,7 @@ export class ClientServiceService {
       version: version,
       yearOfManufacture: yearOfManufacture,
       manufacturer:manufacturer
-    }
-    this.http.post("http://localhost:8080/api/cars/postCar", car, {headers})
+    }, {headers})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -105,8 +104,7 @@ export class ClientServiceService {
   postNewFuelTank(capacity:number, typeOfFuel:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    let fuelTank: FuelTank = { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}
-    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", fuelTank, {headers})
+    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}, {headers})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -123,13 +121,12 @@ export class ClientServiceService {
   idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    let refuel:Refuel = {
+    this.http.post("http://localhost:8080/api/refuels/postRefuel", {
       price:price,
       volume:volume,
       typeOfFuel:typeOfFuel,
       idCar:idCar
-    }
-    this.http.post("http://localhost:8080/api/refuels/postRefuel", refuel, {headers})
+    }, {headers})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -149,8 +146,7 @@ export class ClientServiceService {
   postNewRepair(name:string, description:string, date:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
-    this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers, responseType: 'text' as 'json'})
+    this.http.post("http://localhost:8080/api/repairs/postRepair",{name: name, date:date, description:description, idCar:idCar},{headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -200,30 +196,4 @@ export class ClientServiceService {
         })
   }
 }
-interface Car{
-  manufacturer:string;
-  model:string;
-  version:string;
-  power:string;
-  displacement:string;
-  mileage:string;
-  yearOfManufacture:string;
-  idClient:number;
-}
-interface FuelTank {
-  capacity:number,
-  typeOfFuel:string,
-  idCar:number
-}
-interface Refuel{
-  price:number,
-  volume:number,
-  typeOfFuel:string,
-  idCar:number
-}
-interface Repair{
-  name:string;
-  date:string;
-  description:string;
-  idCar:number;
-}
+
