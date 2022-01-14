@@ -29,7 +29,7 @@ export class ClientMyRefuelsComponent implements OnInit {
     let resp = this.service.getCurrentClient();
     resp.subscribe(data => {this.currentClient = data
     let resp1 = this.service.getCurrentRefuels(this.currentClient.repairShop.idRepairShop);
-      resp1.subscribe(data => {this.refuels = data, console.log(data)} )
+      resp1.subscribe(data => {this.refuels = data} )
     });
   }
   logout(){

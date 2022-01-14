@@ -28,32 +28,88 @@
     </mat-card>
     <div class="page-content">
       <mat-card class="page-wrapper">
-        <table mat-table [dataSource]="allRepairs" class="mat-elevation-z8">
-          <ng-container matColumnDef="name" class="table-item">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let repair"> {{repair.name}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
-          <ng-container matColumnDef="description" class="table-item">
+          <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Description </th>
-            <td mat-cell *matCellDef="let repair"> {{repair.description}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
           </ng-container>
-          <ng-container matColumnDef="date" class="table-item">
+          <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef> Date </th>
-            <td mat-cell *matCellDef="let repair"> {{repair.date | date:'dd/MM/yyyy'}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
           </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-
-          ></tr>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button color="accent" class="mat-elevation-z3" (click)="deleteRepair(element.idRepair)" name="DeleteButton">
+                     Delete</button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button color="accent" class="mat-elevation-z3" (click)="editRepair(element.idRepair)" name="EditButton">
+                Edit</button>
+            </td>
+          </ng-container>
+          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+              <div class="example-element-detail" *ngIf="element.repairParts?.length" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="inner-table mat-elevation-z8" *ngIf="expandedElement">
+                  <table #innerTables mat-table [dataSource]="element.repairParts">
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                      <th mat-header-cell *matHeaderCellDef> Description </th>
+                      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="price">
+                      <th mat-header-cell *matHeaderCellDef> Price </th>
+                      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="delete">
+                      <th mat-header-cell *matHeaderCellDef> Delete </th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button color="accent" class="mat-elevation-z3" (click)="deleteRepairPart(element.idRepairPart)" name="DeleteButton">
+                          Delete</button>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="edit">
+                      <th mat-header-cell *matHeaderCellDef> Edit </th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button color="accent" class="mat-elevation-z3" (click)="editRepairPart(element.idRepairPart)" name="EditButton">
+                          Edit</button>
+                      </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="innerDisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: innerDisplayedColumns;"></tr>
+                  </table>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" [class.example-element-row]="element.repairParts?.length"
+              [class.example-expanded-row]="expandedElement === element" (click)="toggleRow(element)">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
         </table>
-
       </mat-card>
     </div>
-
   </mat-drawer-content>
 </mat-drawer-container>
 </body>
 </html>
+
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
+<!--code from this page was taken from stackblitz from angular team and heavily modified to suit my needs-->
 
 

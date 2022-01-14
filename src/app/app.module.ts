@@ -40,6 +40,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSortModule} from "@angular/material/sort";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,8 +59,7 @@ import {MatSortModule} from "@angular/material/sort";
     ClientNewRepairComponent,
     ClientChangePasswordComponent,
     RepairShopChangePasswordComponent,
-    EditCarDialogComponent,
-
+    EditCarDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +87,7 @@ import {MatSortModule} from "@angular/material/sort";
     MatFormFieldModule,
     MatNativeDateModule,
     MatSortModule,
+    MatSnackBarModule
   ],
   providers: [DataServiceService, ClientServiceService],
   bootstrap: [AppComponent]

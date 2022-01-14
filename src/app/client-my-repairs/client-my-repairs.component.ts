@@ -23,14 +23,11 @@ export class ClientMyRepairsComponent implements OnInit {
   @ViewChildren('innerSort') innerSort: QueryList<MatSort> = new QueryList<MatSort>();
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<RepairPart>> = new QueryList<MatTable<RepairPart>>();
 
-  allRepairs : any;
   currentClient:any;
   email:string | null = '';
-  // displayedColumns: string[] = ['Name', 'Date', 'Description'];
 
   //fancy table
   dataSource: any;
-  usersData: Repair[] = [];
   columnsToDisplay = ['name', 'date', 'description'];
   innerDisplayedColumns = ['name', 'description', 'price'];
   expandedElement: any;

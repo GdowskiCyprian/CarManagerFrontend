@@ -40,51 +40,54 @@
               Here you can add new car to your account
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Manufacturer</mat-label>
-              <input matInput [(ngModel)]="manufacturer">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Model</mat-label>
-              <input matInput [(ngModel)]="model">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Version</mat-label>
-              <input matInput [(ngModel)]="version">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Power</mat-label>
-              <input matInput [(ngModel)]="power">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Displacement</mat-label>
-              <input matInput [(ngModel)]="displacement">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Mileage</mat-label>
-              <input matInput [(ngModel)]="mileage">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Year Of Manufacture</mat-label>
-              <input matInput [(ngModel)]="yearOfManufacture">
-            </mat-form-field>
-          </p>
-          <p>
-            <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewCar()">Save</button>
-          </p>
+          <form #carForm="ngForm">
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Manufacturer</mat-label>
+                <input matInput [(ngModel)]="manufacturer" required pattern="[a-zA-Z]{1,}" name="manufacturer">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Model</mat-label>
+                <input matInput [(ngModel)]="model" required pattern="[a-zA-Z]{1,}" name="model">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Version</mat-label>
+                <input matInput [(ngModel)]="version" required pattern="[a-zA-Z]{1,}" name="version">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Power</mat-label>
+                <input matInput [(ngModel)]="power" required pattern="[0-9]{1,}" name="power">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Displacement</mat-label>
+                <input matInput [(ngModel)]="displacement" required pattern="[0-9]{1,}" name="displacement">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Mileage</mat-label>
+                <input matInput [(ngModel)]="mileage" required pattern="[0-9]{1,}" name="mileage">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Year Of Manufacture</mat-label>
+                <input matInput [(ngModel)]="yearOfManufacture" required pattern="[0-9]{4,4}" name="yearOfManufacture">
+              </mat-form-field>
+            </p>
+            <p>
+              <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewCar()"
+              [disabled]="carForm.invalid">Save</button>
+            </p>
+          </form>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -95,35 +98,38 @@
               Here you can specify what fuel tank/s your car has
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Capacity</mat-label>
-              <input matInput [(ngModel)]="capacity">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Type of fuel</mat-label>
-              <mat-select [(ngModel)]="typeOfFuel">
-                <mat-option value="PETROL">PETROL</mat-option>
-                <mat-option value="LPG">LPG</mat-option>
-                <mat-option value="DIESEL">DIESEL</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Car</mat-label>
-              <mat-select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">
-                <mat-option *ngFor="let car of allCars" [value]="car">
-                  {{car.manufacturer}} {{car.model}} {{car.version}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p>
-            <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewFuelTank()">Save</button>
-          </p>
+          <form #fuelTankForm= "ngForm">
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Capacity</mat-label>
+                <input matInput [(ngModel)]="capacity" required pattern="[0-9]{1,}" name="capacity">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Type of fuel</mat-label>
+                <mat-select [(ngModel)]="typeOfFuel" required name="typeOfFuel">
+                  <mat-option value="PETROL">PETROL</mat-option>
+                  <mat-option value="LPG">LPG</mat-option>
+                  <mat-option value="DIESEL">DIESEL</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Car</mat-label>
+                <mat-select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}" required name="car">
+                  <mat-option *ngFor="let car of allCars" [value]="car">
+                    {{car.manufacturer}} {{car.model}} {{car.version}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewFuelTank()"
+              [disabled]="fuelTankForm.invalid">Save</button>
+            </p>
+          </form>
         </mat-expansion-panel>
       </mat-accordion>
 

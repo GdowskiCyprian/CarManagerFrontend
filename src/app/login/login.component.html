@@ -23,14 +23,14 @@
       <form #loginForm="ngForm">
         <p>
           <mat-form-field appearance="fill" color="accent">
-            <mat-label>Username</mat-label>
-            <input matInput [(ngModel)]="username" required name="loginEmail" pattern="[a-zA-Z0-9.-_]{1,}">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="username" required name="loginEmail" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
           </mat-form-field>
         </p>
         <p>
           <mat-form-field appearance="fill" color="accent">
             <mat-label>Password</mat-label>
-            <input matInput [(ngModel)]="password" type="password" required name="loginPassword" pattern="[a-zA-Z0-9.-_]{1,}">
+            <input matInput [(ngModel)]="password" type="password" required name="loginPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
           </mat-form-field>
         </p>
         <p>
@@ -83,7 +83,7 @@
         <p>
           <mat-form-field appearance="fill" color="accent">
             <mat-label>Your Repair shop</mat-label>
-            <mat-select [(ngModel)]="selectedRepairShop" [ngModelOptions]="{standalone: true}" required>
+            <mat-select [(ngModel)]="selectedRepairShop" [ngModelOptions]="{standalone: true}" required name="date">
               <mat-option *ngFor="let repairShop of allRepairShops" [value]="repairShop">
                 {{repairShop.name}}
               </mat-option>

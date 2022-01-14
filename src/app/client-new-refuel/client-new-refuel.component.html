@@ -40,41 +40,44 @@
               Here you can add new refuel to your car
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Price</mat-label>
-              <input matInput [(ngModel)]="price">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Volume</mat-label>
-              <input matInput [(ngModel)]="volume">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Type of fuel</mat-label>
-              <mat-select [(ngModel)]="typeOfFuel">
-                <mat-option value="PETROL">PETROL</mat-option>
-                <mat-option value="LPG">LPG</mat-option>
-                <mat-option value="DIESEL">DIESEL</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="fill" color="accent">
-              <mat-label>Car</mat-label>
-              <mat-select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}">
-                <mat-option *ngFor="let car of allCars" [value]="car">
-                  {{car.manufacturer}} {{car.model}} {{car.version}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p>
-            <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewRefuel()">Save</button>
-          </p>
+          <form #refuelForm="ngForm">
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Price</mat-label>
+                <input matInput [(ngModel)]="price" required pattern="[0-9]{1,}" name="price">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Volume</mat-label>
+                <input matInput [(ngModel)]="volume" required pattern="[0-9]{1,}" name="volume">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Type of fuel</mat-label>
+                <mat-select [(ngModel)]="typeOfFuel" required name="typeoffuel">
+                  <mat-option value="PETROL">PETROL</mat-option>
+                  <mat-option value="LPG">LPG</mat-option>
+                  <mat-option value="DIESEL">DIESEL</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill" color="accent">
+                <mat-label>Car</mat-label>
+                <mat-select [(ngModel)]="selectedCar" [ngModelOptions]="{standalone: true}" required name="selectedCar">
+                  <mat-option *ngFor="let car of allCars" [value]="car">
+                    {{car.manufacturer}} {{car.model}} {{car.version}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <button mat-button color="accent" class="mat-elevation-z3" (click)="addNewRefuel()"
+              [disabled]="refuelForm.invalid">Save</button>
+            </p>
+          </form>
         </mat-expansion-panel>
       </mat-accordion>
 

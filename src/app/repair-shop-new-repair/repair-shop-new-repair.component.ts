@@ -44,12 +44,12 @@ export class RepairShopNewRepairComponent implements OnInit {
 
     }
     let resp = this.service.getCurrentRepairShop();
-    resp.subscribe(data => {this.currentRepairShop = data, console.log(data)
+    resp.subscribe(data => {this.currentRepairShop = data,
       this.email = this.currentRepairShop.name;
       let resp1 = this.service.getCurrentCars(this.currentRepairShop.idRepairShop);
-      resp1.subscribe(data => {this.cars = data, console.log(data)});
+      resp1.subscribe(data => {this.cars = data});
       let resp2 = this.service.getCurrentRepairs(this.currentRepairShop.idRepairShop);
-      resp2.subscribe(data => {this.repairs = data, console.log(data)});
+      resp2.subscribe(data => {this.repairs = data});
 
     })
   }

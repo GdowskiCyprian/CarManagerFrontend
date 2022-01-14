@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientServiceService {
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient, private router:Router, private _snackBar:MatSnackBar) { }
 
   public logout(){
     sessionStorage.removeItem('username');
@@ -38,7 +39,16 @@ export class ClientServiceService {
   public deleteCar(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete("http://localhost:8080/api/cars/deleteCar/"+id.toString(),{headers}).subscribe(resp => console.log(resp));
+    this.http.delete("http://localhost:8080/api/cars/deleteCar/"+id.toString(),{headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
   public getCurrentRefuels(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
@@ -48,7 +58,16 @@ export class ClientServiceService {
   public deleteRefuel(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete("http://localhost:8080/api/refuels/deleteRefuel/"+id.toString(),{headers}).subscribe(resp => console.log(resp));
+    this.http.delete("http://localhost:8080/api/refuels/deleteRefuel/"+id.toString(),{headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
   public postNewCar(
     manufacturer:string,
@@ -71,13 +90,32 @@ export class ClientServiceService {
       yearOfManufacture: yearOfManufacture,
       manufacturer:manufacturer
     }
-    this.http.post("http://localhost:8080/api/cars/postCar", car, {headers}).subscribe(resp => console.log(resp));
+    this.http.post("http://localhost:8080/api/cars/postCar", car, {headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        })
+
   }
   postNewFuelTank(capacity:number, typeOfFuel:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     let fuelTank: FuelTank = { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}
-    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", fuelTank, {headers}).subscribe(resp => console.log(resp));
+    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", fuelTank, {headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
   postNewRefuel(price:number,
   volume:number,
@@ -91,7 +129,16 @@ export class ClientServiceService {
       typeOfFuel:typeOfFuel,
       idCar:idCar
     }
-    this.http.post("http://localhost:8080/api/refuels/postRefuel", refuel, {headers}).subscribe(resp => console.log(resp));
+    this.http.post("http://localhost:8080/api/refuels/postRefuel", refuel, {headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
   public getCurrentRepairs(id:number){
 
@@ -103,10 +150,18 @@ export class ClientServiceService {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
-    console.log(this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp)));
+    this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers, responseType: 'text' as 'json'})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
   changePassword(email:string, oldpassword:string, newpassword:string){
-    console.log(email, oldpassword, newpassword);
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     return this.http.post("http://localhost:8080/changepassword",
@@ -116,16 +171,33 @@ export class ClientServiceService {
         newPassword:newpassword
       },
       {headers, responseType: 'text' as 'json'}
-      ).subscribe(resp => sessionStorage.setItem("password", newpassword), resp => console.log(resp))
+      )
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          } sessionStorage.setItem("password", newpassword) }, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        })
 
   }
   putCar(idCar:number,manufacturer:string, model:string, version:string, power:number, mileage:number, yearOfManufacture:number, displacement:number, idClient:number){
-    console.log()
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.put("http://localhost:8080/api/cars/putcar",
       {manufacturer:manufacturer, model:model, version:version, power:power, idCar:idCar, mileage:mileage, yearOfManufacture:yearOfManufacture, displacement:displacement, idClient:idClient},
-      {headers}).subscribe(resp => console.log(resp))
+      {headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        })
   }
 }
 interface Car{

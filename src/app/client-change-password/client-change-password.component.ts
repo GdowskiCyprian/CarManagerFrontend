@@ -30,7 +30,7 @@ export class ClientChangePasswordComponent implements OnInit {
       }
     }
     let resp = this.service.getCurrentClient();
-    resp.subscribe(data => {this.currentClient = data, console.log(data)});
+    resp.subscribe(data => {this.currentClient = data});
   }
   logout(){
     this.service.logout();

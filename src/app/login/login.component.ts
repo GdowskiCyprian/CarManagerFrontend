@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataServiceService} from "../data-service.service";
 import {Router} from "@angular/router";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {FormGroup} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   allRepairShops: any;
   selectedRepairShop: any;
   client: Client = {email: "", password: "", name: "", surname: "", phoneNumber: NaN}
-  constructor(private service: DataServiceService, private router: Router, private http:HttpClient) {
+  constructor(private service: DataServiceService, private router: Router, private http:HttpClient, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
       } else {
         this.router.navigate(["/clientgeneralinfo"]);
       }
-      return data;
-    });
+    }, () =>{this._snackBar.open("Wrong credentials", "Ok", {duration: 3000})});
   }
 
   registerRepairShop() {

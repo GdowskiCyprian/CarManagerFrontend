@@ -32,9 +32,9 @@ export class ClientNewRepairComponent implements OnInit {
       }
     }
     let resp = this.service.getCurrentClient();
-    resp.subscribe(data => {this.currentClient = data, console.log(data)
+    resp.subscribe(data => {this.currentClient = data
       let resp1 = this.service.getCurrentCars(this.currentClient.idClient);
-      resp1.subscribe(data => {this.cars = data, console.log(this.currentClient.idClient)});
+      resp1.subscribe(data => {this.cars = data});
     });
   }
   logout(){

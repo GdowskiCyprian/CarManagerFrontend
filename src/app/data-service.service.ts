@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataServiceService {
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient, private router:Router, private _snackBar: MatSnackBar) { }
 
   public isLoggedIn(){
     if(sessionStorage.getItem("username") != null && sessionStorage.getItem("password") != null){
@@ -27,7 +28,8 @@ export class DataServiceService {
   public loginDataService(username:string, password:string){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(username + ':' + password) });
-    return this.http.get("http://localhost:8080/login/"+username,{headers,responseType: 'text' as 'json'});
+    return this.http.get("http://localhost:8080/login/"+username,{headers,responseType: 'text' as 'json'})
+
 
   }
   public getAllRepairShops(){
@@ -50,16 +52,34 @@ export class DataServiceService {
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.delete('http://localhost:8080/api/repairParts/deleteRepairPart/'+id.toString()
        , {headers}
-    ).subscribe(()=> console.log('DeleteSuccesfull'));
+    )
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
-  public deleteRepair(id:number){
+  deleteRepair(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.delete('http://localhost:8080/api/repairs/deleteRepair/'+id.toString()
       , {headers}
-    ).subscribe(()=> console.log('DeleteSuccesfull'));
+    )
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
-  public getCurrentClients(id:number){
+  getCurrentClients(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/api/clients/getcurrentclients/"+id.toString(),{headers});
@@ -73,15 +93,31 @@ export class DataServiceService {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     let newrepair:Repair= {name: name, date:date, description:description, idCar:idCar}
-    console.log(this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers}).subscribe(resp => console.log(resp)));
+    this.http.post("http://localhost:8080/api/repairs/postRepair",newrepair,{headers, responseType: "text" as "json"})
+      .subscribe(
+      next=> {
+        if (typeof next === "string") {
+          this._snackBar.open(next, "Ok", {duration: 3000})
+        }}, err => {
+        if (typeof err === "string") {
+          this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+        }
+      });
   }
   postNewRepairPart(partname:string, partdescription:string, partprice:number, idRepair:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-
-
     let newreparpart:RepairPart = {partname:partname, partdescription:partdescription, partprice:partprice, idRepair:idRepair}
-    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart", newreparpart, {headers}).subscribe(resp => console.log(resp));
+    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart", newreparpart, {headers})
+      .subscribe(
+        next=> {
+          if (typeof next === "string") {
+            this._snackBar.open(next, "Ok", {duration: 3000})
+          }}, err => {
+          if (typeof err === "string") {
+            this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+          }
+        });
   }
   registerRepairShop(email: string,
   password: string,
@@ -96,10 +132,18 @@ export class DataServiceService {
       phoneNumber:phoneNumber,
       nip:nip
     }
-  this.http.post("http://localhost:8080/register/repairshop",
+  return this.http.post("http://localhost:8080/register/repairshop",
     repairShop,
     {headers, responseType: 'text' as 'json'})
-    .subscribe(resp => console.log(resp));
+    .subscribe(
+      next=> {
+        if (typeof next === "string") {
+          this._snackBar.open(next, "Ok", {duration: 3000})
+        }}, err => {
+        if (typeof err === "string") {
+          this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+        }
+      })
 
   }
   registerClient(
@@ -120,10 +164,17 @@ export class DataServiceService {
     this.http.post("http://localhost:8080/register/client",
       client,
       {headers, responseType: 'text' as 'json'})
-      .subscribe(resp => console.log(resp));
+      .subscribe(
+        next=> {
+      if (typeof next === "string") {
+        this._snackBar.open(next, "Ok", {duration: 3000})
+      }}, err => {
+        if (typeof err === "string") {
+          this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+      }
+      })
   }
   changePassword(email:string, oldpassword:string, newpassword:string){
-    console.log(email, oldpassword, newpassword);
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     return this.http.post("http://localhost:8080/changepassword",
@@ -133,7 +184,7 @@ export class DataServiceService {
         newPassword:newpassword
       },
       {headers, responseType: 'text' as 'json'}
-    ).subscribe(resp => sessionStorage.setItem("password", newpassword), resp => console.log(resp))
+    ).subscribe(() => sessionStorage.setItem("password", newpassword))
   }
 }
 interface Repair{

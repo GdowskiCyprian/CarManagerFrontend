@@ -31,7 +31,7 @@ export class RepairShopMyClientsComponent implements OnInit {
       }
     }
     let resp = this.service.getCurrentRepairShop();
-    resp.subscribe(data => {this.currentRepairShop = data, console.log(data)
+    resp.subscribe(data => {this.currentRepairShop = data
     let resp1 = this.service.getCurrentClients(this.currentRepairShop.idRepairShop)
       resp1.subscribe(data => this.allClients = data)
 

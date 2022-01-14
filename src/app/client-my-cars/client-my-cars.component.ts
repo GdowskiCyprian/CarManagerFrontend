@@ -31,7 +31,7 @@ export class ClientMyCarsComponent implements OnInit {
     let resp = this.service.getCurrentClient();
     resp.subscribe(data => {this.currentClient = data
     let resp1 = this.service.getCurrentCars(this.currentClient.idClient);
-      resp1.subscribe(data1 => {this.cars = data1, console.log(data1)})
+      resp1.subscribe(data1 => {this.cars = data1})
     });
   }
   logout(){
@@ -48,10 +48,8 @@ export class ClientMyCarsComponent implements OnInit {
       data: {manufacturer:manufacturer, model:model, version:version, mileage:mileage, power:power, yearOfManufacture:yearOfManufacture, idCar:idCar, displacement:displacement, idClient:this.currentClient.idClient},
     });
     dialogRef.afterClosed().subscribe(result => {
-    //do sth after close
       window.location.reload();
 
     });
-    console.log(idCar, manufacturer, model, version, mileage, power, yearOfManufacture);
   }
 }
