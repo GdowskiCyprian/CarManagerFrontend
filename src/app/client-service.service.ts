@@ -39,7 +39,7 @@ export class ClientServiceService {
   public deleteCar(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete("http://localhost:8080/api/cars/deleteCar/"+id.toString(),{headers})
+    this.http.delete("http://localhost:8080/api/cars/deleteCar/"+id.toString(),{headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -58,7 +58,7 @@ export class ClientServiceService {
   public deleteRefuel(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete("http://localhost:8080/api/refuels/deleteRefuel/"+id.toString(),{headers})
+    this.http.delete("http://localhost:8080/api/refuels/deleteRefuel/"+id.toString(),{headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -89,7 +89,7 @@ export class ClientServiceService {
       version: version,
       yearOfManufacture: yearOfManufacture,
       manufacturer:manufacturer
-    }, {headers})
+    }, {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -104,7 +104,7 @@ export class ClientServiceService {
   postNewFuelTank(capacity:number, typeOfFuel:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}, {headers})
+    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}, {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -126,7 +126,7 @@ export class ClientServiceService {
       volume:volume,
       typeOfFuel:typeOfFuel,
       idCar:idCar
-    }, {headers})
+    }, {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -184,7 +184,7 @@ export class ClientServiceService {
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.put("http://localhost:8080/api/cars/putcar",
       {manufacturer:manufacturer, model:model, version:version, power:power, idCar:idCar, mileage:mileage, yearOfManufacture:yearOfManufacture, displacement:displacement, idClient:idClient},
-      {headers})
+      {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {

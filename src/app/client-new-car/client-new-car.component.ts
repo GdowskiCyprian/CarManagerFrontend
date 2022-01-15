@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ClientServiceService} from "../client-service.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-client-new-car',
@@ -59,6 +59,7 @@ export class ClientNewCarComponent implements OnInit {
       this.mileage,
       this.yearOfManufacture,
       this.currentClient.idClient)
+
   }
   addNewFuelTank(){
     this.service.postNewFuelTank(

@@ -51,7 +51,7 @@ export class DataServiceService {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.delete('http://localhost:8080/api/repairParts/deleteRepairPart/'+id.toString()
-       , {headers}
+       , {headers, responseType: 'text' as 'json'}
     )
       .subscribe(
         next=> {
@@ -67,7 +67,7 @@ export class DataServiceService {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.delete('http://localhost:8080/api/repairs/deleteRepair/'+id.toString()
-      , {headers}
+      , {headers, responseType: 'text' as 'json'}
     )
       .subscribe(
         next=> {
@@ -110,7 +110,7 @@ export class DataServiceService {
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     this.http.post( "http://localhost:8080/api/repairParts/postRepairPart",
       {partname:partname, partdescription:partdescription, partprice:partprice, idRepair:idRepair},
-      {headers})
+      {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
