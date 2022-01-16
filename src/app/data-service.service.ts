@@ -186,5 +186,10 @@ export class DataServiceService {
       {headers, responseType: 'text' as 'json'}
     ).subscribe(() => sessionStorage.setItem("password", newpassword))
   }
+  deleteAccount(idRepairShop:number) {
+    const headers = new HttpHeaders({ 'Content-Type':'application/json',
+      'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    return this.http.delete("http://localhost:8080/api/repairshops/deleteRepairShop/"+idRepairShop.toString(), {headers, responseType: 'text' as 'json'})
+  }
 }
 

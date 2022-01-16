@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {DataServiceService} from "../data-service.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-repair-shop-change-password',
@@ -14,7 +15,7 @@ export class RepairShopChangePasswordComponent implements OnInit {
   oldpassword:string | null = "";
   newpassword:string | null = "";
   newpasswordconfirm:string | null = "";
-  constructor(public router:Router, private service:DataServiceService) { }
+  constructor(public router:Router, private service:DataServiceService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (!this.service.isLoggedIn()) {
@@ -37,6 +38,19 @@ export class RepairShopChangePasswordComponent implements OnInit {
   changePassword(){
     if(this.oldpassword != null && this.newpassword != null && this.newpasswordconfirm != null && this.email !=null && this.newpassword == this.newpasswordconfirm)
       this.service.changePassword(this.email,this.oldpassword, this.newpassword)
+  }
+  deleteAccount(){
+    let resp = this.service.deleteAccount(this.currentRepairShop.idRepairShop)
+    resp
+      .subscribe(next=> {if (typeof next === "string") {
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('password');
+        sessionStorage.removeItem('role');
+        this.router.navigate(["/login"]);
+        this._snackBar.open(next, "Ok", {duration: 3000})
+      }}, err => {if (typeof err === "string") {
+        this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
+      }})
   }
 
 }
