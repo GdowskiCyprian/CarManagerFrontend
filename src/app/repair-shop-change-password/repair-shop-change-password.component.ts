@@ -50,7 +50,7 @@ export class RepairShopChangePasswordComponent implements OnInit {
         this._snackBar.open(next, "Ok", {duration: 3000})
       }}, err => {if (typeof err === "string") {
         this._snackBar.open("Something went wrong", "Ok", {duration: 3000})
-      }})
+      }});
   }
 
 }
