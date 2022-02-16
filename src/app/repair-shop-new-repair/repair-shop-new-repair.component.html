@@ -159,18 +159,18 @@
             <p>
               <mat-form-field appearance="fill" color="accent">
                 <mat-label>Part name</mat-label>
-                <input matInput [(ngModel)]="partname" required name="partname" pattern="[a-zA-Z]{1,}">
+                <input matInput [(ngModel)]="partname" required name="partname" >
               </mat-form-field>
             </p>
             <p>
               <mat-form-field appearance="fill" color="accent">
                 <mat-label>Part description</mat-label>
-                <input matInput [(ngModel)]="partdescription" required name="partdescription" pattern="[a-zA-Z]{1,}">
+                <input matInput [(ngModel)]="partdescription" required name="partdescription" >
               </mat-form-field>
             </p>
             <p>
               <mat-form-field appearance="fill" color="accent">
-                <mat-label>Part description</mat-label>
+                <mat-label>Part price</mat-label>
                 <input matInput [(ngModel)]="partprice" type="number" required name="partprice" pattern="[0-9]{1,}">
               </mat-form-field>
             </p>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {DataServiceService} from "../data-service.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-repair-shop-my-clients',
@@ -14,6 +15,7 @@ export class RepairShopMyClientsComponent implements OnInit {
   constructor(public router:Router, private service:DataServiceService) { }
   allClients: any;
   displayedColumns: string[] = ['name', 'surname', 'phoneNumber']
+
   ngOnInit(): void
   {
     if(!this.service.isLoggedIn())

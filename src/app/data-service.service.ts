@@ -10,6 +10,7 @@ export class DataServiceService {
 
   constructor(private http:HttpClient, private router:Router, private _snackBar: MatSnackBar) { }
 
+  baseUrl:string = 'http://178.62.119.127:8080/';
   public isLoggedIn(){
     if(sessionStorage.getItem("username") != null && sessionStorage.getItem("password") != null){
       return true;
@@ -28,29 +29,29 @@ export class DataServiceService {
   public loginDataService(username:string, password:string){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(username + ':' + password) });
-    return this.http.get("http://localhost:8080/login/"+username,{headers,responseType: 'text' as 'json'})
+    return this.http.get(this.baseUrl +"login/"+username,{headers,responseType: 'text' as 'json'})
 
 
   }
   public getAllRepairShops(){
     const headers = new HttpHeaders({ 'Content-Type':'application/json'});
-    return this.http.get("http://localhost:8080/api/repairshops/repairShopAll",{headers});
+    return this.http.get(this.baseUrl+"api/repairshops/repairShopAll",{headers});
   }
   public getCurrentRepairShop(){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/repairshops/getByMail/"+sessionStorage.getItem('username'),{headers});
+    return this.http.get(this.baseUrl+"api/repairshops/getByMail/"+sessionStorage.getItem('username'),{headers});
   }
   public getCurrentRepairs(id:number){
 
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/repairs/getrepairsbycurrent/"+id.toString(),{headers});
+    return this.http.get(this.baseUrl+"api/repairs/getrepairsbycurrent/"+id.toString(),{headers});
   }
   public deleteRepairPart(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete('http://localhost:8080/api/repairParts/deleteRepairPart/'+id.toString()
+    this.http.delete(this.baseUrl+"api/repairParts/deleteRepairPart/'+id.toString()"
        , {headers, responseType: 'text' as 'json'}
     )
       .subscribe(
@@ -66,7 +67,7 @@ export class DataServiceService {
   deleteRepair(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete('http://localhost:8080/api/repairs/deleteRepair/'+id.toString()
+    this.http.delete(this.baseUrl+"api/repairs/deleteRepair/'+id.toString()"
       , {headers, responseType: 'text' as 'json'}
     )
       .subscribe(
@@ -82,17 +83,17 @@ export class DataServiceService {
   getCurrentClients(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/clients/getcurrentclients/"+id.toString(),{headers});
+    return this.http.get(this.baseUrl+"api/clients/getcurrentclients/"+id.toString(),{headers});
   }
   getCurrentCars(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/cars/getcurrentcars/"+id.toString(),{headers});
+    return this.http.get(this.baseUrl+"api/cars/getcurrentcars/"+id.toString(),{headers});
   }
   postNewRepair(name:string, description:string, date:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post("http://localhost:8080/api/repairs/postRepair",
+    this.http.post(this.baseUrl+"api/repairs/postRepair",
       {name: name, date:date, description:description, idCar:idCar}
       , {headers, responseType: "text" as "json"})
       .subscribe(
@@ -108,7 +109,7 @@ export class DataServiceService {
   postNewRepairPart(partname:string, partdescription:string, partprice:number, idRepair:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post( "http://localhost:8080/api/repairParts/postRepairPart",
+    this.http.post( this.baseUrl+"api/repairParts/postRepairPart",
       {partname:partname, partdescription:partdescription, partprice:partprice, idRepair:idRepair},
       {headers, responseType: 'text' as 'json'})
       .subscribe(
@@ -127,7 +128,7 @@ export class DataServiceService {
   phoneNumber: number,
   nip:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json'});
-  return this.http.post("http://localhost:8080/register/repairshop",
+  return this.http.post(this.baseUrl+"register/repairshop",
     {
       email:email,
       password:password,
@@ -156,7 +157,7 @@ export class DataServiceService {
     idRepairShop:number
   ){
     const headers = new HttpHeaders({ 'Content-Type':'application/json'});
-    this.http.post("http://localhost:8080/register/client",
+    this.http.post(this.baseUrl+"register/client",
       {email: email,
         password: password,
         name: name,
@@ -177,7 +178,7 @@ export class DataServiceService {
   changePassword(email:string, oldpassword:string, newpassword:string){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.post("http://localhost:8080/changepassword",
+    return this.http.post(this.baseUrl+"changepassword",
       {
         email:email,
         oldPassword:oldpassword,
@@ -189,7 +190,7 @@ export class DataServiceService {
   deleteAccount(idRepairShop:number) {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.delete("http://localhost:8080/api/repairshops/deleteRepairShop/"+idRepairShop.toString(), {headers, responseType: 'text' as 'json'})
+    return this.http.delete(this.baseUrl+"api/repairshops/deleteRepairShop/"+idRepairShop.toString(), {headers, responseType: 'text' as 'json'})
   }
 }
 

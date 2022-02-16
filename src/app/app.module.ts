@@ -41,6 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSortModule} from "@angular/material/sort";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -59,36 +60,37 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ClientNewRepairComponent,
     ClientChangePasswordComponent,
     RepairShopChangePasswordComponent,
-    EditCarDialogComponent
+    EditCarDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatCardModule,
-    MatIconModule,
-    MatTableModule,
-    MatGridListModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatStepperModule,
-    MatExpansionModule,
-    MatDatepickerModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatSortModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatCardModule,
+        MatIconModule,
+        MatTableModule,
+        MatGridListModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatStepperModule,
+        MatExpansionModule,
+        MatDatepickerModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatSortModule,
+        MatSnackBarModule,
+        MatPaginatorModule
+    ],
   providers: [DataServiceService, ClientServiceService],
   bootstrap: [AppComponent]
 })

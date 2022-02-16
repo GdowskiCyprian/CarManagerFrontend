@@ -10,6 +10,7 @@ export class ClientServiceService {
 
   constructor(private http:HttpClient, private router:Router, private _snackBar:MatSnackBar) { }
 
+  baseUrl:string = 'http://178.62.119.127:8080/';
   public logout(){
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('password');
@@ -29,17 +30,17 @@ export class ClientServiceService {
   public getCurrentClient(){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/clients/getbymail/"+sessionStorage.getItem('username'),{headers});
+    return this.http.get(this.baseUrl+"api/clients/getbymail/"+sessionStorage.getItem('username'),{headers});
   }
   public getCurrentCars(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/cars/getcurrentcarsbyclient/"+id.toString(),{headers});
+    return this.http.get(this.baseUrl+"api/cars/getcurrentcarsbyclient/"+id.toString(),{headers});
   }
   public deleteCar(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete("http://localhost:8080/api/cars/deleteCar/"+id.toString(),{headers, responseType: 'text' as 'json'})
+    this.http.delete(this.baseUrl+"api/cars/deleteCar/"+id.toString(),{headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -53,12 +54,12 @@ export class ClientServiceService {
   public getCurrentRefuels(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/refuels/getcurrentrefuels/"+id.toString(),{headers});
+    return this.http.get(this.baseUrl+"api/refuels/getcurrentrefuels/"+id.toString(),{headers});
   }
   public deleteRefuel(id:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete("http://localhost:8080/api/refuels/deleteRefuel/"+id.toString(),{headers, responseType: 'text' as 'json'})
+    this.http.delete(this.baseUrl+"api/refuels/deleteRefuel/"+id.toString(),{headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -80,7 +81,7 @@ export class ClientServiceService {
     idClient:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post("http://localhost:8080/api/cars/postCar", {
+    this.http.post(this.baseUrl+"api/cars/postCar", {
       displacement: displacement,
       idClient: idClient,
       mileage: mileage,
@@ -104,7 +105,7 @@ export class ClientServiceService {
   postNewFuelTank(capacity:number, typeOfFuel:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post("http://localhost:8080/api/fuelTanks/postFuelTank", { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}, {headers, responseType: 'text' as 'json'})
+    this.http.post(this.baseUrl+"api/fuelTanks/postFuelTank", { capacity:capacity, typeOfFuel:typeOfFuel, idCar:idCar}, {headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -121,7 +122,7 @@ export class ClientServiceService {
   idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post("http://localhost:8080/api/refuels/postRefuel", {
+    this.http.post(this.baseUrl+"api/refuels/postRefuel", {
       price:price,
       volume:volume,
       typeOfFuel:typeOfFuel,
@@ -141,12 +142,12 @@ export class ClientServiceService {
 
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/api/repairs/getrepairsbycurrentclient/"+id.toString(),{headers});
+    return this.http.get(this.baseUrl+"api/repairs/getrepairsbycurrentclient/"+id.toString(),{headers});
   }
   postNewRepair(name:string, description:string, date:string, idCar:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.post("http://localhost:8080/api/repairs/postRepair",{name: name, date:date, description:description, idCar:idCar},{headers, responseType: 'text' as 'json'})
+    this.http.post(this.baseUrl+"api/repairs/postRepair",{name: name, date:date, description:description, idCar:idCar},{headers, responseType: 'text' as 'json'})
       .subscribe(
         next=> {
           if (typeof next === "string") {
@@ -160,7 +161,7 @@ export class ClientServiceService {
   changePassword(email:string, oldpassword:string, newpassword:string){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.post("http://localhost:8080/changepassword",
+    return this.http.post(this.baseUrl+"changepassword",
       {
         email:email,
         oldPassword:oldpassword,
@@ -182,7 +183,7 @@ export class ClientServiceService {
   putCar(idCar:number,manufacturer:string, model:string, version:string, power:number, mileage:number, yearOfManufacture:number, displacement:number, idClient:number){
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.put("http://localhost:8080/api/cars/putcar",
+    this.http.put(this.baseUrl+"api/cars/putcar",
       {manufacturer:manufacturer, model:model, version:version, power:power, idCar:idCar, mileage:mileage, yearOfManufacture:yearOfManufacture, displacement:displacement, idClient:idClient},
       {headers, responseType: 'text' as 'json'})
       .subscribe(
@@ -199,7 +200,7 @@ export class ClientServiceService {
   deleteAccount(idClient:number) {
     const headers = new HttpHeaders({ 'Content-Type':'application/json',
       'Authorization': 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    return this.http.delete("http://localhost:8080/api/clients/deleteClient/"+idClient.toString(), {headers, responseType: 'text' as 'json'})
+    return this.http.delete(this.baseUrl+"api/clients/deleteClient/"+idClient.toString(), {headers, responseType: 'text' as 'json'})
   }
 }
 

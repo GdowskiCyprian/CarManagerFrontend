@@ -58,10 +58,12 @@ export class ClientMyRepairsComponent implements OnInit {
     this.service.logout();
   }
   toggleRow(element: Repair) {
-    element.repairParts && Object.keys(element.repairParts as MatTableDataSource<RepairPart>).length ? (this.expandedElement = this.expandedElement === element ? null : element) : null;
+    element.repairParts && Object.keys(element.repairParts as MatTableDataSource<RepairPart>).length ?
+      (this.expandedElement = this.expandedElement === element ? null : element) : null;
 
     this.cd.detectChanges();
-    this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<RepairPart>).sort = this.innerSort.toArray()[index]);
+    this.innerTables.forEach((table, index) =>
+      (table.dataSource as MatTableDataSource<RepairPart>).sort = this.innerSort.toArray()[index]);
   }
 
 }
@@ -79,3 +81,7 @@ export interface RepairPart {
   description: string;
   price: number;
 }
+
+/**  Copyright 2019 Google Inc. All Rights Reserved.
+ Use of this source code is governed by an MIT-style license that
+ can be found in the LICENSE file at http://angular.io/license */
