@@ -10,7 +10,7 @@ export class ClientServiceService {
 
   constructor(private http:HttpClient, private router:Router, private _snackBar:MatSnackBar) { }
 
-  baseUrl:string = 'http://178.62.119.127:8080/';
+  baseUrl:string = 'http://localhost:8080/';
   public logout(){
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('password');
